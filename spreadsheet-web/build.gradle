@@ -1,0 +1,54 @@
+buildscript {
+    ext {
+        /** Spring **/
+        spring_boot_version = '2.4.5'
+        spring_version = '5.3.6'
+    }
+
+    repositories {
+        maven { url "https://jitpack.io" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'http://repo.spring.io/milestone' }
+        maven { url 'https://repo.spring.io/snapshot' }
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version "${spring_boot_version}"
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'war'
+}
+
+group = 'com.js'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}

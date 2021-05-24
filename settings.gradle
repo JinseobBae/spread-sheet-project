@@ -1,0 +1,4 @@
+rootProject.name = "spreadsheet"
+
+include "spreadsheet-web"
+
