@@ -27,7 +27,7 @@ plugins {
 
 group = 'com.js'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 configurations {
     compileOnly {
@@ -57,6 +57,9 @@ test {
     useJUnitPlatform()
 }
 
+/**
+ * Include ui build task in build process
+ */
 node{
     version = "${node_version}"
     npmVersion = "${npm_version}"
