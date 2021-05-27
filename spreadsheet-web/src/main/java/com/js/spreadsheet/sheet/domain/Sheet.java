@@ -20,7 +20,7 @@ public class Sheet {
     String sheetName;
 
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "rowId")
     List<Row> rows;
 
