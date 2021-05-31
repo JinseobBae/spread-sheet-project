@@ -2,15 +2,14 @@ package com.js.spreadsheet.sheet.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-public class Row {
+public class SheetRow {
 
     @Id
     long rowId;
@@ -26,6 +25,9 @@ public class Row {
      String col9;
      String col10;
 
+     @ManyToOne(fetch = FetchType.LAZY)
+     @JoinColumn(name = "sheet_id")
+     Sheet sheet;
 
 
 }

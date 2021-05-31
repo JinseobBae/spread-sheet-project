@@ -1,11 +1,13 @@
 package com.js.spreadsheet.sheet.domain;
 
+import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -17,12 +19,12 @@ public class Sheet {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     long id;
 
+    @NotNull
     String sheetName;
 
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rowId")
-    List<Row> rows;
+    @OneToMany(mappedBy = "sheet", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<SheetRow> rows = new ArrayList<>();
 
 
     @Builder
