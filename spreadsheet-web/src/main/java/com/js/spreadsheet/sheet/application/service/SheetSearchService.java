@@ -7,6 +7,6 @@ import java.util.List;
 public interface SheetSearchService {
 
 
-    List<RowDto> findRowData();
+    List<RowDto> findRowData(RowDto rowDto);
 
 }
