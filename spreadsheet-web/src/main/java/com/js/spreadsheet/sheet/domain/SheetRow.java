@@ -12,7 +12,10 @@ import javax.persistence.*;
 public class SheetRow {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     long rowId;
+
+    long rowSeq;
 
      String col1;
      String col2;
