@@ -1,5 +1,6 @@
 package com.js.spreadsheet.sheet.domain;
 
+import com.js.spreadsheet.sheet.application.dto.RowDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,6 +32,19 @@ public class SheetRow {
      @ManyToOne(fetch = FetchType.LAZY)
      @JoinColumn(name = "sheet_id")
      Sheet sheet;
+
+     public void updateCol(RowDto rowDto){
+         col1 = rowDto.getCol1();
+         col2 = rowDto.getCol2();
+         col3 = rowDto.getCol3();
+         col4 = rowDto.getCol4();
+         col5 = rowDto.getCol5();
+         col6 = rowDto.getCol6();
+         col7 = rowDto.getCol7();
+         col8 = rowDto.getCol8();
+         col9 = rowDto.getCol9();
+         col10 = rowDto.getCol10();
+     }
 
 
 }

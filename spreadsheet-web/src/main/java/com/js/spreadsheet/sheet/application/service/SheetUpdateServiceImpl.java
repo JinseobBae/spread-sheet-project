@@ -1,6 +1,7 @@
 package com.js.spreadsheet.sheet.application.service;
 
 import com.js.spreadsheet.exception.DuplicationException;
+import com.js.spreadsheet.exception.NoRowFoundException;
 import com.js.spreadsheet.exception.NoSheetFoundException;
 import com.js.spreadsheet.sheet.application.dto.ResponseDto;
 import com.js.spreadsheet.sheet.application.dto.RowDto;
@@ -100,8 +101,29 @@ public class SheetUpdateServiceImpl implements SheetUpdateService{
     }
 
     @Override
+    @Transactional
     public ResponseDto updateRow(RowDto rowDto) {
-        return null;
+        Sheet sheet = sheetRepository.findBySheetName(rowDto.getSheetName()).orElseThrow(
+                () -> new NoSheetFoundException("error.sheet.not.exist")
+        );
+        SheetRow row = rowRepository.findByRowSeqAndSheet(rowDto.getRowSeq(), sheet).orElseThrow(
+                () -> new NoRowFoundException("error.row.not.exist")
+        );
+
+        row.updateCol(rowDto);
+
+        ResponseDto result = new ResponseDto();
+
+        try{
+            rowRepository.save(row);
+            result.setMsg(msa.getMessage("update.success"));
+            result.setCode("1");
+        }catch (Exception e){
+            result.setMsg(msa.getMessage("update.failed"));
+            result.setCode("0");
+            logger.error("save row failed cause : " + e.getMessage() );
+        }
+        return result;
     }
 
     @Override
