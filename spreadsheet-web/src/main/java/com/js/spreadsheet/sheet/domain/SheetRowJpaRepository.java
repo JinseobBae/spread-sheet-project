@@ -12,4 +12,8 @@ public interface SheetRowJpaRepository extends JpaRepository<SheetRow, Long> {
 
     @Lock(LockModeType.WRITE)
     void deleteBySheet(Sheet sheet);
+
+    @Override
+    @Lock(LockModeType.WRITE)
+    void delete(SheetRow entity);
 }

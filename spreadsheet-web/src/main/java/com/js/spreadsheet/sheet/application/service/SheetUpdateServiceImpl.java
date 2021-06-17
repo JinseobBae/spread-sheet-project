@@ -149,7 +149,27 @@ public class SheetUpdateServiceImpl implements SheetUpdateService{
     }
 
     @Override
+    @Transactional
     public ResponseDto removeRow(RowDto rowDto) {
-        return null;
+        Sheet sheet = sheetRepository.findBySheetName(rowDto.getSheetName()).orElseThrow(
+                () -> new NoSheetFoundException("error.sheet.not.exist")
+        );
+        SheetRow row = rowRepository.findByRowSeqAndSheet(rowDto.getRowSeq(), sheet).orElseThrow(
+                () -> new NoRowFoundException("error.row.not.exist")
+        );
+
+        ResponseDto result = new ResponseDto();
+
+        try{
+            rowRepository.delete(row);
+            result.setMsg(msa.getMessage("delete.success"));
+            result.setCode("1");
+        }catch (RuntimeException rex){
+            logger.error("remove row failed cause : " + rex.getMessage());
+            result.setMsg(msa.getMessage("delete.failed"));
+            result.setCode("0");
+        }
+
+        return result;
     }
 }
