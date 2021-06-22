@@ -58,9 +58,6 @@ dependencies {
 
 }
 
-test {
-    useJUnitPlatform()
-}
 
 /**
  * Include ui build task in build process
@@ -86,3 +83,13 @@ task buildFrontEnd(type: NpmTask, dependsOn: setUp){
 }
 
 processResources.dependsOn 'buildFrontEnd'
+
+test {
+    useJUnitPlatform()
+    //TODO: something
+    println project.gradle.startParameter.taskNames
+    if (project.gradle.startParameter.taskNames.find{ it.endsWith("test") }){
+        setUp.enabled = false
+        buildFrontEnd.enabled = false
+    }
+}
