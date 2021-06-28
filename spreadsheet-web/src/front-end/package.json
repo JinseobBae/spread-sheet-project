@@ -13,7 +13,8 @@
     "path": "^0.12.7",
     "request": "^2.88.2",
     "vue": "^2.6.11",
-    "vue-excel-editor": "^1.4.4"
+    "vue-excel-editor": "^1.4.4",
+    "vue-router": "^3.5.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
