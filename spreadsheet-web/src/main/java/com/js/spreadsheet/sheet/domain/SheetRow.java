@@ -16,7 +16,7 @@ public class SheetRow {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     long rowId;
 
-    long rowSeq;
+    Long rowSeq;
 
      String col1;
      String col2;
