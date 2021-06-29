@@ -4,9 +4,11 @@ import com.js.spreadsheet.exception.NoSheetFoundException;
 import com.js.spreadsheet.sheet.application.dto.RowDto;
 import com.js.spreadsheet.sheet.domain.Sheet;
 import com.js.spreadsheet.sheet.domain.SheetJpaRepository;
+import com.js.spreadsheet.sheet.domain.SheetRow;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +28,7 @@ public class SheetSearchServiceImpl implements SheetSearchService{
                 .orElseThrow( () -> new NoSheetFoundException("There is no sheet") );
 
         return sheet.getRows().stream()
+                .sorted(Comparator.comparing(SheetRow::getRowSeq))
                 .map( row -> modelMapper.map(row, RowDto.class))
                 .collect(Collectors.toList());
     }
