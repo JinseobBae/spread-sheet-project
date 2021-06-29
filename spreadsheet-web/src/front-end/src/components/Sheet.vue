@@ -1,49 +1,48 @@
 <template>
-  <vue-excel-editor v-model="rows" >
-    <vue-excel-column field="col1"   label="User" />
-    <vue-excel-column field="col2"   label="Name" />
-    <vue-excel-column field="col3"  label="Contact" />
-    <vue-excel-column field="col4" label="Gender" />
-    <vue-excel-column field="col5"    label="Age" />
-    <vue-excel-column field="col6"  label="Date Of Birth" />
-    <vue-excel-column field="col7"  label="Date Of Birth" />
-    <vue-excel-column field="col8"  label="Date Of Birth" />
-    <vue-excel-column field="col9"  label="Date Of Birth" />
-    <vue-excel-column field="col10"  label="Date Of Birth" />
+  <vue-excel-editor v-model="rows"  no-header-edit filter-row disable-panel-filter  :localized-label="koreanLabels" >
+    <vue-excel-column field="col1"   label="클래스명" width="400px"  />
+    <vue-excel-column field="col2"   label="CLASS_ID" width="100px" text-align="center"/>
+    <vue-excel-column field="col3"  label="프로퍼티명" width="150px"/>
+    <vue-excel-column field="col4" label="PROPERTY_ID" width="120px" text-align="center"/>
+    <vue-excel-column field="col5"    label="컬럼명" width="110px"/>
+    <vue-excel-column field="col6"  label="데이터타입" width="100px"/>
+    <vue-excel-column field="col7"  label="테이블명" width="150px"/>
+    <vue-excel-column field="col8"  label="설명" width="250px"/>
+    <vue-excel-column field="col9"  label="기타사항" width="250px"/>
+    <vue-excel-column field="col10"  label="ROW_SEQ" invisible />
   </vue-excel-editor>
 </template>
 
 <script>
-import axios from 'axios';
+import { fetchRows } from '@/api/api'
+import { label } from '@/label/label.kr'
 
 export default {
   name: 'Sheet',
   data() {
     return {
-      rows: [
-      ]
+      rows: [],
+      koreanLabels : label
     }
   },
   created() {
-    axios.get('/sheet/data?sheetName=TEST_SHEET')
-        .then(response => {
-          this.rows = response.data
+    fetchRows(this.$route.params.name)
+        .then(rows => { // api.js에서 넘기는 결과값
+          this.rows = rows
         })
-        .catch(error => {
-          console.log(error)
-        })
-
+  },
+  watch : {
+    $route(to, from){ // router 변경 감지
+      if( to.path !== from.path){
+        fetchRows(this.$route.params.name)
+            .then(rows => {
+              this.rows = rows
+            })
+      }
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
