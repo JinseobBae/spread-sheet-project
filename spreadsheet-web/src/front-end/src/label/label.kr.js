@@ -1,0 +1,41 @@
+const label = {
+footerLeft: (top, bottom, total) => `Record ${top} to ${bottom} of ${total}`,
+    first: '처음으로',
+    previous: '이전',
+    next: '다음',
+    last: '마지막',
+    footerRight: {
+        selected: '선택된 열:',
+        filtered: '필터결과:',
+        loaded: '총 데이터:'
+    },
+    processing: 'Processing',
+    tableSetting: 'Table Setting',
+    exportExcel: 'Export Excel',
+    importExcel: 'Import Excel',
+    back: 'Back',
+    reset: 'Default',
+    sortingAndFiltering: '검색 및 정렬',
+    sortAscending: '오름차순 정렬',
+    sortDescending: '내림차순 정렬',
+    near: '≒ Near',
+    exactMatch: '= Exact Match',
+    notMatch: '≠ Not Match',
+    greaterThan: '&gt; Greater Than',
+    greaterThanOrEqualTo: '≥ Greater Than or Equal To',
+    lessThan: '&lt; Less Than',
+    lessThanOrEqualTo: '≤ Less Than Or Equal To',
+    regularExpression: '~ Regular Expression',
+    customFilter: 'Custom Filter',
+    listFirstNValuesOnly: n => `List first ${n} values only`,
+    apply: '적용',
+    noRecordIsRead: 'No record is read',
+    readonlyColumnDetected: 'Readonly column detected',
+    columnHasValidationError: (name, err) => `Column ${name} has validation error: ${err}`,
+    noMatchedColumnName: 'No matched column name',
+    invalidInputValue: 'Invalid input value',
+    missingKeyColumn: 'Missing key column',
+    noRecordIndicator: '검색 결과 없음'
+}
+
+export { label }
