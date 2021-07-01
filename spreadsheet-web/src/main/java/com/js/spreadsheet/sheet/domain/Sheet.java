@@ -26,6 +26,9 @@ public class Sheet {
     @OneToMany(mappedBy = "sheet", cascade = CascadeType.ALL, orphanRemoval = true)
     List<SheetRow> rows = new ArrayList<>();
 
+    @OneToOne(mappedBy = "sheet", cascade = CascadeType.ALL)
+    SheetLabel label;
+
 
     @Builder
     public Sheet(String sheetName){
