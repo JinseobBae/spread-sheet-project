@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,7 +23,7 @@ public class SheetSearchServiceTest {
         RowDto rowDto = RowDto.builder()
                 .sheetName("TEMP")
                 .build();
-        List<RowDto> result =  sheetSearchService.findRowData(rowDto);
+        HashMap<String, Object> result =  sheetSearchService.findRowData(rowDto);
 
         assert result != null;
     }
