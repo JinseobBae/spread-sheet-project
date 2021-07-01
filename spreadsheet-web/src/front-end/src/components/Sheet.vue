@@ -1,5 +1,5 @@
 <template>
-  <vue-excel-editor v-model="rows"  no-header-edit filter-row disable-panel-filter  :localized-label="koreanLabels" >
+  <vue-excel-editor v-model="rows"  no-header-edit filter-row disable-panel-filter  :localized-label="label" >
     <vue-excel-column field="col1"   label="클래스명" width="400px"  />
     <vue-excel-column field="col2"   label="CLASS_ID" width="100px" text-align="center"/>
     <vue-excel-column field="col3"  label="프로퍼티명" width="150px"/>
@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       rows: [],
-      koreanLabels : label
+      labels : label
     }
   },
   created() {

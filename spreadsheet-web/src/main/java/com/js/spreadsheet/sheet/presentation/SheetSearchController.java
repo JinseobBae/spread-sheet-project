@@ -23,4 +23,9 @@ public class SheetSearchController {
         return sheetSearchService.findRowData(rowDto);
     }
 
+    @GetMapping("label")
+    RowDto findSheetLabel(RowDto rowDto){
+        return sheetSearchService.findRowLabel(rowDto);
+    }
+
 }

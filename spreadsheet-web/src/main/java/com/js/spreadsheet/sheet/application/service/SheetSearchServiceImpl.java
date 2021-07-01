@@ -32,4 +32,14 @@ public class SheetSearchServiceImpl implements SheetSearchService{
                 .map( row -> modelMapper.map(row, RowDto.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public RowDto findRowLabel(RowDto rowDto) {
+        Sheet sheet = sheetJpaRepository.findBySheetName(rowDto.getSheetName())
+                .orElseThrow( () -> new NoSheetFoundException("There is no sheet") );
+
+        RowDto lable = sheet.getLabel() != null ? modelMapper.map(sheet.getLabel(), RowDto.class) : new RowDto();
+
+        return lable;
+    }
 }

@@ -23,7 +23,7 @@ public class SheetSearchServiceTest {
         RowDto rowDto = RowDto.builder()
                 .sheetName("TEMP")
                 .build();
-        HashMap<String, Object> result =  sheetSearchService.findRowData(rowDto);
+        List<RowDto> result =  sheetSearchService.findRowData(rowDto);
 
         assert result != null;
     }
