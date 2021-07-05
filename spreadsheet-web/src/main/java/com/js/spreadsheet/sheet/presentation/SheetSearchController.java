@@ -28,4 +28,9 @@ public class SheetSearchController {
         return sheetSearchService.findRowLabel(rowDto);
     }
 
+    @GetMapping("sheet")
+    List<RowDto> findAllSheetList(){
+        return sheetSearchService.findSheetData(new RowDto());
+    }
+
 }

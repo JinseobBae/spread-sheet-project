@@ -11,4 +11,6 @@ public interface SheetSearchService {
 
     RowDto findRowLabel(RowDto rowDto);
 
+    List<RowDto> findSheetData(RowDto rowDto);
+
 }

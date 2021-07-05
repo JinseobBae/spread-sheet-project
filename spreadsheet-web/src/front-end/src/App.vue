@@ -13,13 +13,22 @@
 </template>
 
 <script>
-
+import { fetchAllSheets } from './api/api'
 export default {
   name: 'app',
   data(){
     return {
-      sheetList : ['데이터표준화' , '코드-메시지배포' , '모델-데이터베이스-이관관리']
+      sheetList : []
     }
+  },
+  created() {
+    fetchAllSheets()
+        .then(sheets => {
+          sheets.forEach((sheet) => {
+            this.sheetList.push(sheet.sheetName)
+          })
+
+        })
   }
 }
 </script>

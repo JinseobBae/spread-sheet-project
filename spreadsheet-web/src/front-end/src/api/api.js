@@ -24,4 +24,14 @@ function fetchLables(sheetName){
     })
 }
 
-export { fetchRows , fetchLables }
+function fetchAllSheets(){
+    return axios.get('/sheet/sheet')
+        .then( response => {
+            return response.data
+        })
+        .catch(error => {
+            console.log(error)
+        })
+}
+
+export { fetchRows , fetchLables , fetchAllSheets}

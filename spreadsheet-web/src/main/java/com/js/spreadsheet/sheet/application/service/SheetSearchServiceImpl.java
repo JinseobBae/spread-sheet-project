@@ -6,10 +6,13 @@ import com.js.spreadsheet.sheet.domain.Sheet;
 import com.js.spreadsheet.sheet.domain.SheetJpaRepository;
 import com.js.spreadsheet.sheet.domain.SheetRow;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,5 +44,22 @@ public class SheetSearchServiceImpl implements SheetSearchService{
         RowDto lable = sheet.getLabel() != null ? modelMapper.map(sheet.getLabel(), RowDto.class) : new RowDto();
 
         return lable;
+    }
+
+    @Override
+    public List<RowDto> findSheetData(RowDto rowDto) {
+        List<Sheet> sheetList = new ArrayList<>();
+        if(rowDto.getSheetName() == null || rowDto.getSheetName().equals("")){
+            sheetList = sheetJpaRepository.findAll();
+        }else{
+            Optional<Sheet> sheet =  sheetJpaRepository.findBySheetName(rowDto.getSheetName());
+            if(sheet.isPresent()){
+                sheetList.add(sheet.get());
+            }
+        }
+
+        return sheetList.stream()
+                .map( sheet -> RowDto.builder().sheetName(sheet.getSheetName()).build())
+                .collect(Collectors.toList());
     }
 }
