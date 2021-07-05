@@ -1,15 +1,15 @@
 <template>
   <vue-excel-editor ref="grid" v-model="rows"  no-header-edit filter-row disable-panel-filter  :localized-label="labels" >
-    <vue-excel-column field="col1"   label="클래스명" width="400px"  />
-    <vue-excel-column field="col2"   label="CLASS_ID" width="100px" text-align="center"/>
-    <vue-excel-column field="col3"  label="프로퍼티명" width="150px"/>
-    <vue-excel-column field="col4" label="PROPERTY_ID" width="120px" text-align="center"/>
-    <vue-excel-column field="col5"    label="컬럼명" width="110px"/>
-    <vue-excel-column field="col6"  label="데이터타입" width="100px"/>
-    <vue-excel-column field="col7"  label="테이블명" width="150px"/>
-    <vue-excel-column field="col8"  label="설명" width="250px"/>
-    <vue-excel-column field="col9"  label="기타사항" width="250px"/>
-    <vue-excel-column field="col10"  label="ROW_SEQ" invisible />
+    <vue-excel-column field="col1"  width="300px"/>
+    <vue-excel-column field="col2"  width="200px"/>
+    <vue-excel-column field="col3"  width="150px"/>
+    <vue-excel-column field="col4"  width="120px"/>
+    <vue-excel-column field="col5"  width="110px"/>
+    <vue-excel-column field="col6"  width="100px"/>
+    <vue-excel-column field="col7"  width="150px"/>
+    <vue-excel-column field="col8"  width="250px"/>
+    <vue-excel-column field="col9"  width="250px"/>
+    <vue-excel-column field="col10" />
   </vue-excel-editor>
 </template>
 
