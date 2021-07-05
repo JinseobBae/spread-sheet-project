@@ -14,6 +14,8 @@
 
 <script>
 import { fetchAllSheets } from './api/api'
+import util from "./util/util"
+
 export default {
   name: 'app',
   data(){
@@ -31,6 +33,21 @@ export default {
         })
   }
 }
+
+function init(){
+  //Event - When document is fully loaded
+  window.addEventListener("load", function(){
+
+    //Elements for search - auto enter press
+    let searchColumnElements = document.querySelectorAll(".cell.column-filter.column-filter")
+
+    util.makeAutoEnterPressedElement(searchColumnElements);
+
+  });
+}
+
+init();
+
 </script>
 
 <style>
