@@ -1,5 +1,5 @@
 <template>
-  <vue-excel-editor v-model="rows"  no-header-edit filter-row disable-panel-filter  :localized-label="label" >
+  <vue-excel-editor ref="grid" v-model="rows"  no-header-edit filter-row disable-panel-filter  :localized-label="labels" >
     <vue-excel-column field="col1"   label="클래스명" width="400px"  />
     <vue-excel-column field="col2"   label="CLASS_ID" width="100px" text-align="center"/>
     <vue-excel-column field="col3"  label="프로퍼티명" width="150px"/>
@@ -16,6 +16,7 @@
 <script>
 import { fetchRows } from '@/api/api'
 import { label } from '@/label/label.kr'
+import { setLabel } from "@/label/colLabel";
 
 export default {
   name: 'Sheet',
@@ -38,8 +39,12 @@ export default {
             .then(rows => {
               this.rows = rows
             })
+        setLabel(this)
       }
     }
+  },
+  mounted() {
+    setLabel(this)
   }
 }
 </script>
