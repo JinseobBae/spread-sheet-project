@@ -23,6 +23,5 @@ public class RowDto {
     String col9;
     String col10;
 
-    RowDto label;
 
 }
