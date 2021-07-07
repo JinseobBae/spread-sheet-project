@@ -35,24 +35,27 @@ function fetchAllSheets(){
     axios.get('/sheet/sheet')
         .then( response => {
             const sheets = response.data
-            const subMenus = [];
-            sheets.forEach((sheet) => {
-                const subMenu = {
-                    isLinkAction: false,
-                    type: "link"
-                }
-                subMenu.text = sheet.sheetName
-                subMenu.path = '/sheet/' + sheet.sheetName
-                subMenus.push(subMenu)
-            })
-            nav.menuOptionsLeft.push(
-                {
-                    type: "link",
-                    text: "테스트입니다.",
-                    arrowColor: "#659CC8",
-                    subMenuOptions: subMenus
-                }
-            )
+
+            for(const category in sheets){
+                const subMenus = [];
+                sheets[category].forEach((sheet) => {
+                    const subMenu = {
+                        isLinkAction: false,
+                        type: "link"
+                    }
+                    subMenu.text = sheet.sheetName
+                    subMenu.path = '/sheet/' + sheet.sheetName
+                    subMenus.push(subMenu)
+                })
+                nav.menuOptionsLeft.push(
+                    {
+                        type: "link",
+                        text: category,
+                        arrowColor: "#659CC8",
+                        subMenuOptions: subMenus
+                    }
+                )
+            }
         })
         .catch(error => {
             console.log(error)
