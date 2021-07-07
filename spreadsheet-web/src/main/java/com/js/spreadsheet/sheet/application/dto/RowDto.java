@@ -9,6 +9,7 @@ import lombok.*;
 public class RowDto {
 
     String sheetName;
+    String category;
 
     long rowSeq;
 

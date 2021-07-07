@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <header>
-      <p></p>
-      <p v-for="item in sheetList" :key="item">
-        <router-link :to="`/sheet/${item}`"> {{item}}</router-link>
-      </p>
-    </header>
+    <vue-navigation-bar :options="navbar"/>
     <main>
       <router-view/>
     </main>
@@ -20,17 +15,9 @@ export default {
   name: 'app',
   data(){
     return {
-      sheetList : []
+      sheetList : [],
+      navbar: fetchAllSheets()
     }
-  },
-  created() {
-    fetchAllSheets()
-        .then(sheets => {
-          sheets.forEach((sheet) => {
-            this.sheetList.push(sheet.sheetName)
-          })
-
-        })
   }
 }
 
@@ -57,6 +44,6 @@ init();
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>

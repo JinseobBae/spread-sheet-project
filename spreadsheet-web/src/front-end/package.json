@@ -12,8 +12,12 @@
     "core-js": "^3.6.5",
     "path": "^0.12.7",
     "request": "^2.88.2",
+    "sass": "^1.35.1",
+    "sass-loader": "^10.2.0",
     "vue": "^2.6.11",
+    "vue-awesome": "^4.3.1",
     "vue-excel-editor": "^1.4.4",
+    "vue-navigation-bar": "^4.1.0",
     "vue-router": "^3.5.2"
   },
   "devDependencies": {

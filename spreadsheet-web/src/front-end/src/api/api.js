@@ -25,13 +25,40 @@ function fetchLables(sheetName){
 }
 
 function fetchAllSheets(){
-    return axios.get('/sheet/sheet')
+
+    const nav = {
+        elementId: "main-navbar",
+        isUsingVueRouter: true,
+        menuOptionsLeft: []
+    }
+
+    axios.get('/sheet/sheet')
         .then( response => {
-            return response.data
+            const sheets = response.data
+            const subMenus = [];
+            sheets.forEach((sheet) => {
+                const subMenu = {
+                    isLinkAction: false,
+                    type: "link"
+                }
+                subMenu.text = sheet.sheetName
+                subMenu.path = '/sheet/' + sheet.sheetName
+                subMenus.push(subMenu)
+            })
+            nav.menuOptionsLeft.push(
+                {
+                    type: "link",
+                    text: "테스트입니다.",
+                    arrowColor: "#659CC8",
+                    subMenuOptions: subMenus
+                }
+            )
         })
         .catch(error => {
             console.log(error)
         })
+
+    return nav
 }
 
-export { fetchRows , fetchLables , fetchAllSheets}
+export { fetchRows , fetchLables , fetchAllSheets }

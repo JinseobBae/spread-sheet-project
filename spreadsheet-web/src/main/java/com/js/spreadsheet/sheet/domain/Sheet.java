@@ -22,6 +22,9 @@ public class Sheet {
     @NotNull
     String sheetName;
 
+    @NotNull
+    String category;
+
 
     @OneToMany(mappedBy = "sheet", cascade = CascadeType.ALL, orphanRemoval = true)
     List<SheetRow> rows = new ArrayList<>();
