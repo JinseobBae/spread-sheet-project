@@ -44,10 +44,10 @@ public class SheetSearchServiceImpl implements SheetSearchService{
     }
 
     @Override
-    public HashMap<String, List<RowDto>> findSheetData(RowDto rowDto) {
+    public Map<String, List<RowDto>> findSheetData(RowDto rowDto) {
         List<Sheet> sheetList = new ArrayList<>();
         if(rowDto.getSheetName() == null || rowDto.getSheetName().equals("")){
-            sheetList = sheetJpaRepository.findAll();
+            sheetList = sheetJpaRepository.findAllByOrderByIdAsc();
         }else{
             Optional<Sheet> sheet =  sheetJpaRepository.findBySheetName(rowDto.getSheetName());
             if(sheet.isPresent()){
@@ -55,11 +55,11 @@ public class SheetSearchServiceImpl implements SheetSearchService{
             }
         }
 
-        return (HashMap<String, List<RowDto>>) sheetList.stream()
+        return sheetList.stream()
                 .map( sheet -> RowDto.builder()
                         .sheetName(sheet.getSheetName())
                         .category(sheet.getCategory())
                         .build())
-                .collect(Collectors.groupingBy(RowDto::getCategory));
+                .collect(Collectors.groupingBy(RowDto::getCategory, LinkedHashMap::new, Collectors.toList()));
     }
 }
