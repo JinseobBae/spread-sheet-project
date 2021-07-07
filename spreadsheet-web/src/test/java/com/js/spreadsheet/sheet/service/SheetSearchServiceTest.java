@@ -35,4 +35,11 @@ public class SheetSearchServiceTest {
                 .build();
         assertThrows(NoSheetFoundException.class, () -> sheetSearchService.findRowData(rowDto) );
     }
+
+    @Test
+    void findAllSheets(){
+        HashMap<String, List<RowDto>> result = sheetSearchService.findSheetData(new RowDto());
+        assert result.size() == 2;
+        assert result.get("TEST") != null;
+    }
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,7 @@ public class SheetSearchController {
     }
 
     @GetMapping("sheet")
-    List<RowDto> findAllSheetList(){
+    HashMap<String, List<RowDto>> findAllSheetList(){
         return sheetSearchService.findSheetData(new RowDto());
     }
 

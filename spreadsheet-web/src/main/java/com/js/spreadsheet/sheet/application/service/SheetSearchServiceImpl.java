@@ -9,10 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,7 +44,7 @@ public class SheetSearchServiceImpl implements SheetSearchService{
     }
 
     @Override
-    public List<RowDto> findSheetData(RowDto rowDto) {
+    public HashMap<String, List<RowDto>> findSheetData(RowDto rowDto) {
         List<Sheet> sheetList = new ArrayList<>();
         if(rowDto.getSheetName() == null || rowDto.getSheetName().equals("")){
             sheetList = sheetJpaRepository.findAll();
@@ -58,8 +55,11 @@ public class SheetSearchServiceImpl implements SheetSearchService{
             }
         }
 
-        return sheetList.stream()
-                .map( sheet -> RowDto.builder().sheetName(sheet.getSheetName()).build())
-                .collect(Collectors.toList());
+        return (HashMap<String, List<RowDto>>) sheetList.stream()
+                .map( sheet -> RowDto.builder()
+                        .sheetName(sheet.getSheetName())
+                        .category(sheet.getCategory())
+                        .build())
+                .collect(Collectors.groupingBy(RowDto::getCategory));
     }
 }

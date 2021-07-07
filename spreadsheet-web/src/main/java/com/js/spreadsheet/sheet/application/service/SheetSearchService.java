@@ -2,6 +2,7 @@ package com.js.spreadsheet.sheet.application.service;
 
 import com.js.spreadsheet.sheet.application.dto.RowDto;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface SheetSearchService {
@@ -11,6 +12,6 @@ public interface SheetSearchService {
 
     RowDto findRowLabel(RowDto rowDto);
 
-    List<RowDto> findSheetData(RowDto rowDto);
+    HashMap<String, List<RowDto>> findSheetData(RowDto rowDto);
 
 }
