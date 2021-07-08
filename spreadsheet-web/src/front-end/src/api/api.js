@@ -29,7 +29,19 @@ function fetchAllSheets(){
     const nav = {
         elementId: "main-navbar",
         isUsingVueRouter: true,
-        menuOptionsLeft: []
+        menuOptionsLeft: [
+            {
+                type: "link",
+                text: "Home",
+                path: "/"
+            },
+            {
+                type: "spacer",
+                text: "",
+                path: ""
+            }
+        ]
+
     }
 
     axios.get('/sheet/sheet')
