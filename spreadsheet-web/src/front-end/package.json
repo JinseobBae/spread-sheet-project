@@ -17,6 +17,7 @@
     "vue": "^2.6.11",
     "vue-awesome": "^4.3.1",
     "vue-excel-editor": "^1.4.4",
+    "vue-i18n": "^8.24.5",
     "vue-navigation-bar": "^4.1.0",
     "vue-router": "^3.5.2"
   },
