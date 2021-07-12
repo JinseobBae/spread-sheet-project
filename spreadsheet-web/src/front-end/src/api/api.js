@@ -76,4 +76,16 @@ const fetchAllSheets = () =>{
     return nav
 }
 
-export { fetchRows , fetchLables , fetchAllSheets }
+const addRow = (sheetName, idx) => {
+    axios.post('/sheet/row',
+        { sheetName : sheetName, rowSeq : parseInt(idx)},
+        {
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }
+    )
+}
+
+
+export { fetchRows , fetchLables , fetchAllSheets, addRow }

@@ -17,6 +17,7 @@
 import { fetchRows } from '@/api/api'
 import { label } from '@/label/label.kr'
 import { setLabel } from "@/label/colLabel";
+import SheetEvent from "@/event/sheetEvent";
 
 export default {
   name: 'Sheet',
@@ -45,6 +46,7 @@ export default {
   },
   mounted() {
     setLabel(this)
+    SheetEvent.initSheetEvent(this)
   }
 }
 </script>
