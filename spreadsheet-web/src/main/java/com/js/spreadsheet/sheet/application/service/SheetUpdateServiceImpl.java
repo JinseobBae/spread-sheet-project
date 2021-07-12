@@ -16,6 +16,7 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -90,6 +91,12 @@ public class SheetUpdateServiceImpl implements SheetUpdateService{
 
         try{
             rowRepository.save(row);
+            List<SheetRow> reorderList = rowRepository.findAllByRowSeqGreaterThan(rowDto.getRowSeq());
+
+            //reorder sequence
+            reorderList.forEach( reorderRow -> reorderRow.incrementSeq(1L));
+            rowRepository.saveAll(reorderList);
+
             result.setMsg(msa.getMessage("save.success"));
             result.setCode("1");
         }catch (Exception e){

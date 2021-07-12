@@ -26,7 +26,7 @@ public class SheetController {
     }
 
     @PostMapping("row")
-    ResponseDto addRow(RowDto rowDto){
+    ResponseDto addRow(@RequestBody RowDto rowDto){
         return sheetUpdateService.addRow(rowDto);
     }
 

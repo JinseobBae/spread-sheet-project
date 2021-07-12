@@ -46,6 +46,10 @@ public class SheetRow {
          col10 = rowDto.getCol10();
      }
 
+     public void incrementSeq(Long num){
+         this.rowSeq += num;
+     }
+
 
 }
 
