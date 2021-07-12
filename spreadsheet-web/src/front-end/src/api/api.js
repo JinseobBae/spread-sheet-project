@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-function fetchRows(sheetName){
+const fetchRows = (sheetName) => {
     return axios.get('/sheet/data', {
         params : {
             sheetName: sheetName
@@ -12,7 +12,7 @@ function fetchRows(sheetName){
     })
 }
 
-function fetchLables(sheetName){
+const fetchLables = (sheetName) =>{
     return axios.get('/sheet/label', {
         params : {
             sheetName: sheetName
@@ -24,7 +24,7 @@ function fetchLables(sheetName){
     })
 }
 
-function fetchAllSheets(){
+const fetchAllSheets = () =>{
 
     const nav = {
         elementId: "main-navbar",
