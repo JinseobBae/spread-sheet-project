@@ -1,5 +1,5 @@
 import Util from "@/util/util";
-import { addRow } from "@/api/api";
+import { addRow, delRow } from "@/api/api";
 
 export default class SheetEvent {
 
@@ -37,11 +37,16 @@ const newRecord = (event, sheetContext) => {
    if (pos !== null && pos !== undefined && pos !== "" && pos !== -1){
        sheetContext.$refs.grid.newRecord({pos : pos})
        addRow(sheetContext.$route.params.name, parseInt(pos) + 1)
+       // sheetContext.rerender()
     }
 }
 
-const delRecord = (event, jsSheetContext) => {
-    console.error("DELETE!!!!", event, jsSheetContext)
+const delRecord = (event, sheetContext) => {
+    let pos = findPos(event.target, 2);
+    if (pos !== null && pos !== undefined && pos !== "" && pos !== -1){
+        sheetContext.$refs.grid.deleteRecord(parseInt(pos) - 1 )
+        delRow(sheetContext.$route.params.name, parseInt(pos))
+    }
 }
 
 const findPos = (node, targetLevel) => {

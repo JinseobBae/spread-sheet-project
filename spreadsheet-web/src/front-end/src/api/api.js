@@ -78,7 +78,10 @@ const fetchAllSheets = () =>{
 
 const addRow = (sheetName, idx) => {
     axios.post('/sheet/row',
-        { sheetName : sheetName, rowSeq : parseInt(idx)},
+        {
+            sheetName : sheetName,
+            rowSeq : idx
+             },
         {
             headers: {
                 'Content-Type' : 'application/json'
@@ -87,5 +90,24 @@ const addRow = (sheetName, idx) => {
     )
 }
 
+const delRow = (sheetName, idx) => {
+    axios.delete('/sheet/row', {
+            data: {
+                sheetName : sheetName,
+                rowSeq : idx
+            }
+        }
+    )
+}
 
-export { fetchRows , fetchLables , fetchAllSheets, addRow }
+const updateRow = (sheetName, idx, row) => {
+    console.error(sheetName,idx,row)
+    axios.put('/sheet/row', {
+        sheetName : sheetName,
+        rowSeq : idx,
+        [row.name] : row.val
+    })
+}
+
+
+export { fetchRows , fetchLables , fetchAllSheets, addRow , delRow , updateRow }

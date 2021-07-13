@@ -1,5 +1,6 @@
 <template>
-  <vue-excel-editor ref="grid" v-model="rows"  no-header-edit filter-row disable-panel-filter  :localized-label="labels" >
+  <div>
+  <vue-excel-editor ref="grid" v-model="rows" @update="rowUpdate" no-header-edit filter-row disable-panel-filter  :localized-label="labels" :key="componentKey">
     <vue-excel-column field="col1"  width="300px"/>
     <vue-excel-column field="col2"  width="200px"/>
     <vue-excel-column field="col3"  width="150px"/>
@@ -11,10 +12,11 @@
     <vue-excel-column field="col9"  width="250px"/>
     <vue-excel-column field="col10" />
   </vue-excel-editor>
+  </div>
 </template>
 
 <script>
-import { fetchRows } from '@/api/api'
+import { fetchRows , updateRow} from '@/api/api'
 import { label } from '@/label/label.kr'
 import { setLabel } from "@/label/colLabel";
 import SheetEvent from "@/event/sheetEvent";
@@ -24,7 +26,8 @@ export default {
   data() {
     return {
       rows: [],
-      labels : label
+      labels : label,
+      componentKey : 0
     }
   },
   created() {
@@ -32,6 +35,10 @@ export default {
         .then(rows => { // api.js에서 넘기는 결과값
           this.rows = rows
         })
+  },
+  mounted() {
+    setLabel(this)
+    SheetEvent.initSheetEvent(this)
   },
   watch : {
     $route(to, from){ // router 변경 감지
@@ -44,9 +51,16 @@ export default {
       }
     }
   },
-  mounted() {
-    setLabel(this)
-    SheetEvent.initSheetEvent(this)
+  methods : {
+    rowUpdate(rec){
+      const row = rec[0]
+      updateRow(this.$route.params.name, row.idx, {name : row.name, val : row.newVal} )
+    },
+    rerender(){
+      this.componentKey += 1
+      setLabel(this)
+    }
+
   }
 }
 </script>
