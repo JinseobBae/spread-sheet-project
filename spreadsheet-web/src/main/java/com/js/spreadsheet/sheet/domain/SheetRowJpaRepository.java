@@ -11,7 +11,7 @@ public interface SheetRowJpaRepository extends JpaRepository<SheetRow, Long> {
 
     Optional<SheetRow> findByRowSeqAndSheet(long rowSeq, Sheet sheet);
 
-    List<SheetRow> findAllByRowSeqGreaterThan(Long rowSeq);
+    List<SheetRow> findAllByRowSeqGreaterThanEqualAndSheet(Long rowSeq, Sheet sheet);
 
     @Override
     @Lock(LockModeType.WRITE)

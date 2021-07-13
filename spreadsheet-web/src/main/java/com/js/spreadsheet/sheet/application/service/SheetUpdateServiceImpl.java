@@ -91,11 +91,7 @@ public class SheetUpdateServiceImpl implements SheetUpdateService{
 
         try{
             rowRepository.save(row);
-            List<SheetRow> reorderList = rowRepository.findAllByRowSeqGreaterThan(rowDto.getRowSeq());
-
-            //reorder sequence
-            reorderList.forEach( reorderRow -> reorderRow.incrementSeq(1L));
-            rowRepository.saveAll(reorderList);
+            reorderingRowSeq(row,"add");
 
             result.setMsg(msa.getMessage("save.success"));
             result.setCode("1");
@@ -169,6 +165,8 @@ public class SheetUpdateServiceImpl implements SheetUpdateService{
 
         try{
             rowRepository.delete(row);
+            reorderingRowSeq(row, "del");
+
             result.setMsg(msa.getMessage("delete.success"));
             result.setCode("1");
         }catch (RuntimeException rex){
@@ -178,5 +176,20 @@ public class SheetUpdateServiceImpl implements SheetUpdateService{
         }
 
         return result;
+    }
+
+    private void reorderingRowSeq(SheetRow row ,String eventType){
+        List<SheetRow> reorderList = rowRepository.findAllByRowSeqGreaterThanEqualAndSheet(row.getRowSeq(), row.getSheet());
+        //reorder sequence
+        reorderList.forEach( reorderRow -> {
+            if(row.getRowId() != reorderRow.getRowId()){
+                if(eventType.equals("add") ){
+                    reorderRow.increaseSeq(1);
+                }else if(eventType.equals("del")){
+                    reorderRow.decreaseSeq(1);
+                }
+            }
+        });
+        rowRepository.saveAll(reorderList);
     }
 }

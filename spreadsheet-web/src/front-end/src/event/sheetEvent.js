@@ -36,7 +36,7 @@ const newRecord = (event, sheetContext) => {
     //끼워 넣기
    if (pos !== null && pos !== undefined && pos !== "" && pos !== -1){
        sheetContext.$refs.grid.newRecord({pos : pos})
-       addRow(sheetContext.$route.params.name, pos)
+       addRow(sheetContext.$route.params.name, parseInt(pos) + 1)
     }
 }
 
