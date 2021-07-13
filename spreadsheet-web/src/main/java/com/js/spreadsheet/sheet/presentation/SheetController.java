@@ -31,12 +31,12 @@ public class SheetController {
     }
 
     @PutMapping("row")
-    ResponseDto updateRow(RowDto rowDto){
+    ResponseDto updateRow(@RequestBody RowDto rowDto){
         return sheetUpdateService.updateRow(rowDto);
     }
 
     @DeleteMapping("row")
-    ResponseDto deleteRow(RowDto rowDto){
+    ResponseDto deleteRow(@RequestBody RowDto rowDto){
         return sheetUpdateService.removeRow(rowDto);
     }
 
