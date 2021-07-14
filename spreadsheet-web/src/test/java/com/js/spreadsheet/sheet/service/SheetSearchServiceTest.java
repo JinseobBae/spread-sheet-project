@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,7 +40,7 @@ public class SheetSearchServiceTest {
 
     @Test
     void findAllSheets(){
-        HashMap<String, List<RowDto>> result = sheetSearchService.findSheetData(new RowDto());
+        Map<String, List<RowDto>> result = sheetSearchService.findSheetData(new RowDto());
         assert result.size() == 2;
         assert result.get("TEST") != null;
     }

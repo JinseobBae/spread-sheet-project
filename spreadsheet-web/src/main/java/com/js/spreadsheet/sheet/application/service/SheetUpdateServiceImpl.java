@@ -5,6 +5,7 @@ import com.js.spreadsheet.exception.NoRowFoundException;
 import com.js.spreadsheet.exception.NoSheetFoundException;
 import com.js.spreadsheet.sheet.application.dto.ResponseDto;
 import com.js.spreadsheet.sheet.application.dto.RowDto;
+import com.js.spreadsheet.sheet.application.dto.RowUpdateDto;
 import com.js.spreadsheet.sheet.domain.Sheet;
 import com.js.spreadsheet.sheet.domain.SheetJpaRepository;
 import com.js.spreadsheet.sheet.domain.SheetRow;
@@ -105,15 +106,15 @@ public class SheetUpdateServiceImpl implements SheetUpdateService{
 
     @Override
     @Transactional
-    public ResponseDto updateRow(RowDto rowDto) {
-        Sheet sheet = sheetRepository.findBySheetName(rowDto.getSheetName()).orElseThrow(
+    public ResponseDto updateRow(RowUpdateDto rowUpdateDto) {
+        Sheet sheet = sheetRepository.findBySheetName(rowUpdateDto.getSheetName()).orElseThrow(
                 () -> new NoSheetFoundException("error.sheet.not.exist")
         );
-        SheetRow row = rowRepository.findByRowSeqAndSheet(rowDto.getRowSeq(), sheet).orElseThrow(
+        SheetRow row = rowRepository.findByRowSeqAndSheet(rowUpdateDto.getRowSeq(), sheet).orElseThrow(
                 () -> new NoRowFoundException("error.row.not.exist")
         );
 
-        row.updateCol(rowDto);
+        row.updateSpecificCol(rowUpdateDto);
 
         ResponseDto result = new ResponseDto();
 

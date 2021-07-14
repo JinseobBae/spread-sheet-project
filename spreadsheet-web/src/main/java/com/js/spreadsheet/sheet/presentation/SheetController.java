@@ -2,6 +2,7 @@ package com.js.spreadsheet.sheet.presentation;
 
 import com.js.spreadsheet.sheet.application.dto.ResponseDto;
 import com.js.spreadsheet.sheet.application.dto.RowDto;
+import com.js.spreadsheet.sheet.application.dto.RowUpdateDto;
 import com.js.spreadsheet.sheet.application.service.SheetUpdateService;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +32,8 @@ public class SheetController {
     }
 
     @PutMapping("row")
-    ResponseDto updateRow(@RequestBody RowDto rowDto){
-        return sheetUpdateService.updateRow(rowDto);
+    ResponseDto updateRow(@RequestBody RowUpdateDto updateDto){
+        return sheetUpdateService.updateRow(updateDto);
     }
 
     @DeleteMapping("row")

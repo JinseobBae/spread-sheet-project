@@ -105,7 +105,8 @@ const updateRow = (sheetName, idx, row) => {
     axios.put('/sheet/row', {
         sheetName : sheetName,
         rowSeq : idx,
-        [row.name] : row.val
+        value : row.val,
+        updatedCol : row.name
     })
 }
 

@@ -1,9 +1,11 @@
 package com.js.spreadsheet.sheet.domain;
 
 import com.js.spreadsheet.sheet.application.dto.RowDto;
+import com.js.spreadsheet.sheet.application.dto.RowUpdateDto;
 import lombok.*;
 
 import javax.persistence.*;
+import java.lang.reflect.Field;
 
 @Getter
 @Entity
@@ -44,6 +46,17 @@ public class SheetRow {
          col8 = rowDto.getCol8();
          col9 = rowDto.getCol9();
          col10 = rowDto.getCol10();
+     }
+
+     public void updateSpecificCol(RowUpdateDto rowUpdateDto){
+         String updateCol = rowUpdateDto.getUpdatedCol();
+         try{
+             Field updateField = this.getClass().getDeclaredField(updateCol);
+             updateField.setAccessible(true);
+             updateField.set(this, rowUpdateDto.getValue());
+         }catch(Exception e){
+             e.printStackTrace();
+         }
      }
 
      public void increaseSeq(long num){

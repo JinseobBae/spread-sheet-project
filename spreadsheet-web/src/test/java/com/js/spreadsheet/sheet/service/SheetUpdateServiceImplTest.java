@@ -4,6 +4,7 @@ import com.js.spreadsheet.exception.DuplicationException;
 import com.js.spreadsheet.exception.NoSheetFoundException;
 import com.js.spreadsheet.sheet.application.dto.ResponseDto;
 import com.js.spreadsheet.sheet.application.dto.RowDto;
+import com.js.spreadsheet.sheet.application.dto.RowUpdateDto;
 import com.js.spreadsheet.sheet.application.service.SheetUpdateService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,11 +111,11 @@ class SheetUpdateServiceImplTest {
                 .build();
          sheetUpdateService.addRow(rowDto);
 
-        RowDto updateRow = RowDto.builder()
-                .sheetName(sheet.getSheetName())
-                .col1("test!!")
-                .rowSeq(1)
-                .build();
+        RowUpdateDto updateRow = new RowUpdateDto();
+        updateRow.setSheetName(sheet.getSheetName());
+        updateRow.setUpdatedCol("col1");
+        updateRow.setCol1("changed!!");
+        updateRow.setRowSeq(1);
 
         ResponseDto updateResult = sheetUpdateService.updateRow(updateRow);
 
