@@ -24,6 +24,10 @@ import { fetchRows , updateRow} from '@/api/api'
 import { label } from '@/label/label.kr'
 import { setLabel } from "@/label/colLabel";
 import SheetEvent from "@/event/sheetEvent";
+import MenumanEventConfiguration from '@/event/menuman-event-configuration'
+
+//Event Context - Context Menu
+const menumanEventConfiguration = new MenumanEventConfiguration()
 
 export default {
   name: 'Sheet',
@@ -35,6 +39,10 @@ export default {
     }
   },
   created() {
+
+    //Setup - ContextMenu event with Sheet Context
+    menumanEventConfiguration.setup(this)
+
     fetchRows(this.$route.params.name)
         .then(rows => { // api.js에서 넘기는 결과값
           this.rows = rows

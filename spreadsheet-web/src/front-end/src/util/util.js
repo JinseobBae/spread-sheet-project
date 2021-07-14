@@ -28,4 +28,32 @@ export default class Util {
         return element.dispatchEvent(event);
     }
 
+    static findLastChildNodeInnerText(element, searchParentsLevel){
+        let resultInnerText = null;
+
+        let foundLastElement = Util.findLastChildNode(element, searchParentsLevel);
+
+        if (foundLastElement !== null)
+            resultInnerText = foundLastElement.innerText;
+
+        return resultInnerText;
+    }
+
+    static findLastChildNode(element, searchParentsLevel){
+        let foundLastElement = null;
+        let currentSearchLevel = -1;
+        let currentElement = element;
+
+        while(++currentSearchLevel < searchParentsLevel){
+            if (currentElement.children && currentElement.children.length > 0){
+                currentElement = currentElement.children[0];
+            }else{
+                foundLastElement = currentElement;
+                break;
+            }
+        }
+
+        return foundLastElement;
+    }
+
 }
