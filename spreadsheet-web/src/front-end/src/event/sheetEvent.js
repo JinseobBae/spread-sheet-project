@@ -18,35 +18,34 @@ export default class SheetEvent {
 
         });
     }
+    static newRecord(element, sheetContext){
+        //pos 찾아
+        let pos = findPos(element, 2);
+        //끼워 넣기
+        if (pos !== null && pos !== undefined && pos !== "" && pos !== -1){
+            sheetContext.$refs.grid.newRecord({pos : pos})
+            addRow(sheetContext.$route.params.name, parseInt(pos) + 1)
+        }
+    }
+
+    static delRecord(element, sheetContext){
+        let pos = findPos(element, 2);
+        if (pos !== null && pos !== undefined && pos !== "" && pos !== -1){
+            sheetContext.$refs.grid.deleteRecord(parseInt(pos) - 1 )
+            delRow(sheetContext.$route.params.name, parseInt(pos))
+        }
+    }
 }
 
 const openContext = (event, sheetContext) =>{
     event.preventDefault()
-    if (event.shiftKey){
-        delRecord(event, sheetContext)
-    }else{
-        newRecord(event, sheetContext)
-    }
-
-}
-
-const newRecord = (event, sheetContext) => {
     //pos 찾아
     let pos = findPos(event.target, 2);
     //끼워 넣기
-   if (pos !== null && pos !== undefined && pos !== "" && pos !== -1){
-       sheetContext.$refs.grid.newRecord({pos : pos})
-       addRow(sheetContext.$route.params.name, parseInt(pos) + 1)
-       // sheetContext.rerender()
-    }
-}
-
-const delRecord = (event, sheetContext) => {
-    let pos = findPos(event.target, 2);
     if (pos !== null && pos !== undefined && pos !== "" && pos !== -1){
-        sheetContext.$refs.grid.deleteRecord(parseInt(pos) - 1 )
-        delRow(sheetContext.$route.params.name, parseInt(pos))
+        sheetContext.$refs.menu.open(event)
     }
+
 }
 
 const findPos = (node, targetLevel) => {

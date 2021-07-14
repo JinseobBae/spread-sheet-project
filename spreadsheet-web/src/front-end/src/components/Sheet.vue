@@ -12,6 +12,10 @@
     <vue-excel-column field="col9"  width="250px"/>
     <vue-excel-column field="col10" />
   </vue-excel-editor>
+    <context-menu :display="false" ref="menu">
+      <context-menu-item @click.native="rowAdd"> ADD</context-menu-item>
+      <context-menu-item @click.native="rowRemove">DELETE</context-menu-item>
+    </context-menu>
   </div>
 </template>
 
@@ -59,8 +63,18 @@ export default {
     rerender(){
       this.componentKey += 1
       setLabel(this)
-    }
+    },
+    rowAdd(){
+      const cellElement = this.$refs.menu.getTarget()
+      SheetEvent.newRecord(cellElement, this)
+      this.$refs.menu.close()
 
+    },
+    rowRemove(){
+      const cellElement = this.$refs.menu.getTarget()
+      SheetEvent.delRecord(cellElement, this)
+      this.$refs.menu.close()
+    }
   }
 }
 </script>
