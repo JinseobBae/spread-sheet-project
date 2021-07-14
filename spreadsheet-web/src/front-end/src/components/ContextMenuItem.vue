@@ -7,11 +7,6 @@
 <script>
 export default {
   name: "ContextMenuItem",
-  methods:{
-    hi(){
-      alert("masaka...?")
-    }
-  }
 }
 </script>
 
