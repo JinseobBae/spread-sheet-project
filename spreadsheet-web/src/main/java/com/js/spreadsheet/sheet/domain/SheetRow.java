@@ -3,6 +3,7 @@ package com.js.spreadsheet.sheet.domain;
 import com.js.spreadsheet.sheet.application.dto.RowDto;
 import com.js.spreadsheet.sheet.application.dto.RowUpdateDto;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.lang.reflect.Field;
@@ -15,8 +16,9 @@ import java.lang.reflect.Field;
 public class SheetRow {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    long rowId;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    String rowId;
 
     Long rowSeq;
 
