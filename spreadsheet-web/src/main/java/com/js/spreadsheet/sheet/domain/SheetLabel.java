@@ -3,7 +3,6 @@ package com.js.spreadsheet.sheet.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -13,8 +12,7 @@ import javax.persistence.*;
 public class SheetLabel {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     long id;
 
     String col1;
