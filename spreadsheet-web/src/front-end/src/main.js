@@ -16,4 +16,9 @@ Vue.component('context-menu-item', ContextMenuItem)
 new Vue({
   router,
   render: h => h(App),
+  watch: {
+    $route(to){
+      document.title = to.params.name || to.name
+    }
+  }
 }).$mount('#app')
