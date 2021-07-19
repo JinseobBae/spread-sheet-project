@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const fetchRows = (sheetName) => {
-    return axios.get('/sheet/data', {
+    return axios.get('sheet/data', {
         params : {
             sheetName: sheetName
         }
@@ -13,7 +13,7 @@ const fetchRows = (sheetName) => {
 }
 
 const fetchLables = (sheetName) =>{
-    return axios.get('/sheet/label', {
+    return axios.get('sheet/label', {
         params : {
             sheetName: sheetName
         }
@@ -44,7 +44,7 @@ const fetchAllSheets = () =>{
 
     }
 
-    axios.get('/sheet/sheet')
+    axios.get('sheet/sheet')
         .then( response => {
             const sheets = response.data
 
@@ -77,7 +77,7 @@ const fetchAllSheets = () =>{
 }
 
 const addRow = (sheetName, idx) => {
-    axios.post('/sheet/row',
+    axios.post('sheet/row',
         {
             sheetName : sheetName,
             rowSeq : idx
@@ -102,7 +102,7 @@ const delRow = (sheetName, idx) => {
 
 const updateRow = (sheetName, idx, row) => {
     console.error(sheetName,idx,row)
-    axios.put('/sheet/row', {
+    axios.put('sheet/row', {
         sheetName : sheetName,
         rowSeq : idx,
         value : row.val,
