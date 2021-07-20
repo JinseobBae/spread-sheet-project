@@ -17,12 +17,12 @@ public class SheetController {
     }
 
     @PostMapping("sheet")
-    ResponseDto addSheet(RowDto rowDto){
+    ResponseDto addSheet(@RequestBody RowDto rowDto){
         return sheetUpdateService.addSheet(rowDto);
     }
 
     @DeleteMapping("sheet")
-    ResponseDto deleteSheet(RowDto rowDto){
+    ResponseDto deleteSheet(@RequestBody RowDto rowDto){
         return sheetUpdateService.removeSheet(rowDto);
     }
 
