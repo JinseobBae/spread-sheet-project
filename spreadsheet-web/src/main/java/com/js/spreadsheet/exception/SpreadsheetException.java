@@ -13,4 +13,11 @@ public class SpreadsheetException extends RuntimeException{
         this.httpStatus = httpStatus;
     }
 
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
+    }
+
+    public String getErrMsg() {
+        return errMsg;
+    }
 }
