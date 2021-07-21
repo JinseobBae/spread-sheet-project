@@ -24,6 +24,7 @@ plugins {
     id 'com.moowork.node' version "${moowork_version}"
     id 'java'
     id 'war'
+    id 'jacoco'
 }
 
 group = 'com.js'
@@ -93,8 +94,42 @@ test {
         setUp.enabled = false
         buildFrontEnd.enabled = false
     }
+    finalizedBy 'jacocoTestReport'
 }
 
 bootWar {
     archiveFileName = "SpreadSheet-v${sheet_version}.war"
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled = true
+        xml.enabled = false
+        csv.enabled = false
+        html.destination file("${buildDir}/reports/")
+    }
+    finalizedBy 'jacocoTestCoverageVerification'
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            enabled = true
+            element = 'CLASS'
+
+            limit {
+                counter = 'BRANCH'
+                value = 'COVEREDRATIO'
+                minimum = 0.50
+            }
+
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.50
+            }
+
+            excludes = ['com.js.spreadsheet.SpreadsheetApplication']
+        }
+    }
 }
