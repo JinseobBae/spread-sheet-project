@@ -1,7 +1,7 @@
 package com.js.spreadsheet.sheet.presentation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.js.spreadsheet.BaseControllerTest;
+import com.js.spreadsheet.BaseTestController;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SheetControllerTest extends BaseControllerTest {
+class SheetControllerTest extends BaseTestController {
 
 
     @Test
