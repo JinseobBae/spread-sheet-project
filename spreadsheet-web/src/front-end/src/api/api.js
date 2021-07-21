@@ -8,7 +8,7 @@ const fetchRows = (sheetName) => {
     }).then( response => {
         return response.data  // 성공 시 data를 return -> promise
     }).catch(error => {
-        console.log(error)
+        alert(error.response.data.message)
     })
 }
 
@@ -20,7 +20,7 @@ const fetchLables = (sheetName) =>{
     }).then( response => {
         return response.data  // 성공 시 data를 return -> promise
     }).catch(error => {
-        console.log(error)
+        alert(error.response.data.message)
     })
 }
 
@@ -70,7 +70,7 @@ const fetchAllSheets = () =>{
             }
         })
         .catch(error => {
-            console.log(error)
+            alert(error.response.data.message)
         })
 
     return nav
@@ -87,7 +87,9 @@ const addRow = (sheetName, idx) => {
                 'Content-Type' : 'application/json'
             }
         }
-    )
+    ).catch( error => {
+        alert(error.response.data.message)
+    })
 }
 
 const delRow = (sheetName, idx) => {
@@ -97,7 +99,9 @@ const delRow = (sheetName, idx) => {
                 rowSeq : idx
             }
         }
-    )
+    ).catch( error => {
+        alert(error.response.data.message)
+    })
 }
 
 const updateRow = (sheetName, idx, row) => {
@@ -107,6 +111,8 @@ const updateRow = (sheetName, idx, row) => {
         rowSeq : idx,
         value : row.val,
         updatedCol : row.name
+    }).catch( error => {
+        alert(error.response.data.message)
     })
 }
 

@@ -25,7 +25,7 @@ public class SheetSearchServiceImpl implements SheetSearchService{
     @Override
     public List<RowDto> findRowData(RowDto rowDto) throws RuntimeException{
         Sheet sheet = sheetJpaRepository.findBySheetName(rowDto.getSheetName())
-                .orElseThrow( () -> new NoSheetFoundException("There is no sheet") );
+                .orElseThrow( () -> new NoSheetFoundException("error.sheet.not.exist") );
 
         return sheet.getRows().stream()
                 .sorted(Comparator.comparing(SheetRow::getRowSeq))
@@ -36,7 +36,7 @@ public class SheetSearchServiceImpl implements SheetSearchService{
     @Override
     public RowDto findRowLabel(RowDto rowDto) {
         Sheet sheet = sheetJpaRepository.findBySheetName(rowDto.getSheetName())
-                .orElseThrow( () -> new NoSheetFoundException("There is no sheet") );
+                .orElseThrow( () -> new NoSheetFoundException("error.sheet.not.exist") );
 
         RowDto lable = sheet.getLabel() != null ? modelMapper.map(sheet.getLabel(), RowDto.class) : new RowDto();
 
