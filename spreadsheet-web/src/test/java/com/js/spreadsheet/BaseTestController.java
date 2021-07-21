@@ -19,8 +19,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
-public class BaseControllerTest {
-
+public class BaseTestController {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
@@ -50,7 +49,7 @@ public class BaseControllerTest {
 
     /**
      * Get request with params
-      * @param url
+     * @param url
      * @param params
      * @return
      * @throws Exception
@@ -65,13 +64,21 @@ public class BaseControllerTest {
 
     /**
      * Post request
-      * @param url
+     * @param url
      * @param param
      * @return
      * @throws Exception
      */
     protected ResultActions requestPost(String url, Object param) throws Exception{
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post(url)
+                .content(objectMapper.writeValueAsString(param))
+                .contentType(MEDIA_TYPE)
+                .accept(MEDIA_TYPE);
+        return this.mockMvc.perform(builder);
+    }
+
+    protected ResultActions requestPut(String url, Object param) throws Exception{
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.put(url)
                 .content(objectMapper.writeValueAsString(param))
                 .contentType(MEDIA_TYPE)
                 .accept(MEDIA_TYPE);
