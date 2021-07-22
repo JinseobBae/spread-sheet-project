@@ -93,7 +93,7 @@ const addRow = (sheetName, idx) => {
 }
 
 const delRow = (sheetName, idx) => {
-    axios.delete('/sheet/row', {
+    axios.delete('sheet/row', {
             data: {
                 sheetName : sheetName,
                 rowSeq : idx
