@@ -1,21 +1,26 @@
 <template>
   <div>
-  <vue-excel-editor ref="grid" v-model="rows" @update="rowUpdate" no-header-edit filter-row disable-panel-filter  :localized-label="labels" :key="componentKey">
-    <vue-excel-column field="col1"  width="300px"/>
-    <vue-excel-column field="col2"  width="200px"/>
-    <vue-excel-column field="col3"  width="150px"/>
-    <vue-excel-column field="col4"  width="120px"/>
-    <vue-excel-column field="col5"  width="110px"/>
-    <vue-excel-column field="col6"  width="100px"/>
-    <vue-excel-column field="col7"  width="150px"/>
-    <vue-excel-column field="col8"  width="250px"/>
-    <vue-excel-column field="col9"  width="250px"/>
-    <vue-excel-column field="col10" />
-  </vue-excel-editor>
-    <context-menu :display="false" ref="menu">
-      <context-menu-item @click.native="rowAdd"> ADD</context-menu-item>
-      <context-menu-item @click.native="rowRemove">DELETE</context-menu-item>
-    </context-menu>
+    <div class="" style="font-size: 1.5em; margin-bottom: 10px;">
+      {{this.$route.params.category}} > {{this.$route.params.name}}
+    </div>
+    <div>
+      <vue-excel-editor ref="grid" v-model="rows" @update="rowUpdate" no-header-edit filter-row disable-panel-filter  :localized-label="labels" :key="componentKey">
+        <vue-excel-column field="col1"  width="300px"/>
+        <vue-excel-column field="col2"  width="200px"/>
+        <vue-excel-column field="col3"  width="150px"/>
+        <vue-excel-column field="col4"  width="120px"/>
+        <vue-excel-column field="col5"  width="110px"/>
+        <vue-excel-column field="col6"  width="100px"/>
+        <vue-excel-column field="col7"  width="150px"/>
+        <vue-excel-column field="col8"  width="250px"/>
+        <vue-excel-column field="col9"  width="250px"/>
+        <vue-excel-column field="col10" />
+      </vue-excel-editor>
+      <context-menu :display="false" ref="menu">
+        <context-menu-item @click.native="rowAdd"> ADD</context-menu-item>
+        <context-menu-item @click.native="rowRemove">DELETE</context-menu-item>
+      </context-menu>
+    </div>
   </div>
 </template>
 
