@@ -56,7 +56,7 @@ const fetchAllSheets = () =>{
                         type: "link"
                     }
                     subMenu.text = sheet.sheetName
-                    subMenu.path = '/sheet/' + sheet.sheetName
+                    subMenu.path = '/sheet/'+ category + '/' + sheet.sheetName
                     subMenus.push(subMenu)
                 })
                 nav.menuOptionsLeft.push(
@@ -105,7 +105,6 @@ const delRow = (sheetName, idx) => {
 }
 
 const updateRow = (sheetName, idx, row) => {
-    console.error(sheetName,idx,row)
     axios.put('sheet/row', {
         sheetName : sheetName,
         rowSeq : idx,
@@ -116,5 +115,16 @@ const updateRow = (sheetName, idx, row) => {
     })
 }
 
+const findSearchRow = (searchValue) => {
+    return axios.get('sheet/search', {
+        params : {
+            searchValue : searchValue
+        }
+    }).then( response => {
+        return response.data  // 성공 시 data를 return -> promise
+    }).catch(error => {
+        alert(error.response.data.message)
+    })
+}
 
-export { fetchRows , fetchLables , fetchAllSheets, addRow , delRow , updateRow }
+export { fetchRows , fetchLables , fetchAllSheets, addRow , delRow , updateRow , findSearchRow }
