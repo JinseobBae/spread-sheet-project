@@ -16,7 +16,7 @@
     "request": "^2.88.2",
     "sass": "^1.35.1",
     "sass-loader": "^10.2.0",
-    "vue": "^2.6.14",
+    "vue": "^2.6.11",
     "vue-awesome": "^4.3.1",
     "vue-excel-editor": "^1.4.4",
     "vue-i18n": "^8.24.5",
