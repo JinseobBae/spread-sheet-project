@@ -8,6 +8,9 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@progress/kendo-spreadsheet-vue-wrapper": "^2021.2.617",
+    "@progress/kendo-theme-default": "^4.40.1",
+    "@progress/kendo-ui": "^2021.2.616",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "path": "^0.12.7",
