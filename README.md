@@ -59,3 +59,8 @@ npm run serve
    spring.datasource.password= password
    ```
     
+> Redis
+ ```
+ spring.redis.host=
+ spring.redis.port
+ ```

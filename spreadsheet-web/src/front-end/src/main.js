@@ -9,6 +9,9 @@ import ContextMenuItem from "@/components/ContextMenuItem";
 import '@progress/kendo-ui'
 import '@progress/kendo-theme-default/dist/all.css'
 import {Spreadsheet, SpreadsheetSheet, SpreadsheetInstaller} from '@progress/kendo-spreadsheet-vue-wrapper'
+import BootstrapVue from "bootstrap-vue";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 Vue.component("vue-navigation-bar", VueNavigationBar);
@@ -18,6 +21,7 @@ Vue.component('context-menu-item', ContextMenuItem)
 Vue.use(SpreadsheetInstaller)
 Vue.component('spreadsheet', Spreadsheet)
 Vue.component('spreadsheet-sheet', SpreadsheetSheet)
+Vue.use(BootstrapVue)
 
 new Vue({
   router,

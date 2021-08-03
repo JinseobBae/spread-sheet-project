@@ -24,7 +24,7 @@ export default {
 
 <style>
 #main {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

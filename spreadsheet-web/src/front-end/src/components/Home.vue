@@ -1,14 +1,16 @@
 <template>
   <div class="home">
-    엑셀 형태로 데이터를 관리하는 곳입니다.
+    <vue-search/>
   </div>
 </template>
 
 <script>
+import Search from "@/components/Search";
+
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  name: 'Home',
+  components:{
+    'vue-search' : Search
   }
 }
 </script>

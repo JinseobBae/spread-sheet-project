@@ -16,7 +16,7 @@ export default new Router({
             component : Home
         },
         {
-            path : '/sheet/:name',
+            path : '/sheet/:category/:name',
             name : 'Sheet',
             component : Sheet
         },
