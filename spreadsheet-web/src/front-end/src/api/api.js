@@ -39,6 +39,16 @@ const fetchAllSheets = () =>{
                 type: "spacer",
                 text: "",
                 path: ""
+            },
+            {
+                type: "link",
+                text: "Kendo-TEST",
+                path: "/kendo"
+            },
+            {
+                type: "spacer",
+                text: "",
+                path: ""
             }
         ]
 
