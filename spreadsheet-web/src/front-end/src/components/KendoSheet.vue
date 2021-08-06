@@ -1,6 +1,7 @@
 <template>
   <div>
     <spreadsheet ref="spreadsheet"
+                 :sheetsbar="false"
                  v-on:render="onRender"
                  v-on:select="onSelect"
                  v-on:change="onChange"
@@ -20,7 +21,12 @@
                  v-on:deleterow="onDeleteRow"
                  v-on:insertcolumn="onInsertColumn"
                  v-on:insertrow="onInsertRow">
-      <spreadsheet-sheet :name="'Food Order'">
+      <spreadsheet-sheet :name="'Food Order'"
+                         :rows="rows"
+                         :columns="columns"
+                         :data-source="datas"
+
+      >
       </spreadsheet-sheet>
     </spreadsheet>
   </div>
@@ -30,6 +36,8 @@
 
 // window.JSZip = JSZip;
 
+import {findRowKendo} from '@/api/api'
+
 export default {
   name: 'App',
   mounted: function () {
@@ -38,15 +46,36 @@ export default {
     spreadsheet.element.css('width', '100%');
     spreadsheet.resize();
   },
+  data(){
+    return {
+      rows : [{
+        cells :[]
+      }],
+      columns : [],
+      datas: {
+        transport: {
+          read: (options) => {
+            this.dataInit(options)
+          }
+        }
+      }
+    }
+  },
   methods: {
+    dataInit(options){
+      findRowKendo().then( r => {
+        options.success(r)
+      })
+    },
     onRender () {
-      console.log("Spreadsheet is rendered");
+      // console.log("Spreadsheet is rendered");
     },
     onSelect (arg) {
       console.log("New range selected. New value: " + arg.range.value());
     },
-    onChange (arg) {
-      console.log("Spreadsheet change. New value: " + arg.range.value());
+    onChange (arg) { // cell update
+      console.log(JSON.parse(JSON.stringify(arg)));
+      console.log("Spreadsheet change. New value: " + arg.range);
     },
     onChangeFormat (arg) {
       console.log("Format of the range with value " + arg.range.value() + " changed to " + arg.range.format());
@@ -96,6 +125,9 @@ export default {
     onInsertRow (arg) {
       console.log("New row at index " + arg.index + " on sheet " + arg.sheet.name() + " is inserted");
     }
+  },
+  created(){
+
   }
 }
 </script>

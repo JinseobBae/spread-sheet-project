@@ -137,4 +137,16 @@ const findSearchRow = (searchValue) => {
     })
 }
 
-export { fetchRows , fetchLables , fetchAllSheets, addRow , delRow , updateRow , findSearchRow }
+const findRowKendo = (sheetName) => {
+    return axios.get('sheet/search-kendo', {
+        params : {
+            sheetName : sheetName
+        }
+    }).then( response => {
+        return response.data
+    }).catch(error => {
+        alert(error.response.data.message)
+    })
+}
+
+export { fetchRows , fetchLables , fetchAllSheets, addRow , delRow , updateRow , findSearchRow , findRowKendo}
