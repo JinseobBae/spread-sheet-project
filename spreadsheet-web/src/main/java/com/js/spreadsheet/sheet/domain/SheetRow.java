@@ -7,6 +7,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 @Getter
 @Entity

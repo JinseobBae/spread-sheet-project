@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -61,5 +62,55 @@ public class SheetSearchServiceImpl implements SheetSearchService{
                         .category(sheet.getCategory())
                         .build())
                 .collect(Collectors.groupingBy(RowDto::getCategory, LinkedHashMap::new, Collectors.toList()));
+    }
+
+    @Override
+    public List<Map<String, Object>> findRowDataKendo(RowDto rowDto) {
+        Sheet sheet = sheetJpaRepository.findBySheetName(rowDto.getSheetName())
+                .orElseThrow( () -> new NoSheetFoundException("error.sheet.not.exist") );
+
+        RowDto lable = sheet.getLabel() != null ? modelMapper.map(sheet.getLabel(), RowDto.class) : new RowDto();
+        List<SheetRow> rows = sheet.getRows();
+
+        List<Map<String, Object>> resultList = new ArrayList<>();
+
+        rows.forEach(row -> resultList.add(generateMap(lable,row)));
+
+        return resultList;
+    }
+
+    LinkedHashMap<String, Object> generateMap(RowDto label, SheetRow row){
+        LinkedHashMap<String, Object> result = new LinkedHashMap<>();
+
+        if(checkStringValue(label.getCol1()))
+            result.put(label.getCol1(), defaultIfNull(row.getCol1()));
+        if(checkStringValue(label.getCol2()))
+            result.put(label.getCol2(), defaultIfNull(row.getCol2()));
+        if(checkStringValue(label.getCol3()))
+            result.put(label.getCol3(), defaultIfNull(row.getCol3()));
+        if(checkStringValue(label.getCol4()))
+            result.put(label.getCol4(), defaultIfNull(row.getCol4()));
+        if(checkStringValue(label.getCol5()))
+            result.put(label.getCol5(), defaultIfNull(row.getCol5()));
+        if(checkStringValue(label.getCol6()))
+            result.put(label.getCol6(), defaultIfNull(row.getCol6()));
+        if(checkStringValue(label.getCol7()))
+            result.put(label.getCol7(), defaultIfNull(row.getCol7()));
+        if(checkStringValue(label.getCol8()))
+            result.put(label.getCol8(), defaultIfNull(row.getCol8()));
+        if(checkStringValue(label.getCol9()))
+            result.put(label.getCol9(), defaultIfNull(row.getCol9()));
+        if(checkStringValue(label.getCol10()))
+            result.put(label.getCol10(), defaultIfNull(row.getCol10()));
+
+        return result;
+    }
+
+    boolean checkStringValue(String str){
+        return str != null && !str.equals("");
+    }
+
+    String defaultIfNull(String str){
+        return str == null ? "" : str;
     }
 }

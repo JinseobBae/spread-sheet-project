@@ -53,4 +53,9 @@ public class SheetSearchController {
         return result;
     }
 
+    @GetMapping("search-kendo")
+    List<Map<String, Object>> findDataForKendo(RowDto rowDto){
+        return sheetSearchService.findRowDataKendo(rowDto);
+    }
+
 }
