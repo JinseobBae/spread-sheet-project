@@ -11,6 +11,7 @@
     - Modules
         - [vue-excel-editor](https://github.com/cscan/vue-excel-editor)
         - [vue-navigation-bar](https://github.com/johndatserakis/vue-navigation-bar)
+        - Kendo-Spread-Sheet
 * node.js 
 * gradle 6.7.1
 
