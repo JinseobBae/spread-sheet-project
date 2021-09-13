@@ -149,4 +149,17 @@ const findRowKendo = (sheetName) => {
     })
 }
 
-export { fetchRows , fetchLables , fetchAllSheets, addRow , delRow , updateRow , findSearchRow , findRowKendo}
+const changeSheetData = (allData) => {
+    axios.post('sheet/kendo-change',
+        {
+            data : allData.rows,
+        },
+        {
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }
+    )
+}
+
+export { fetchRows , fetchLables , fetchAllSheets, addRow , delRow , updateRow , findSearchRow , findRowKendo, changeSheetData}

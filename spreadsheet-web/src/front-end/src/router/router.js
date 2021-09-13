@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Sheet from '../components/Sheet'
+// import Sheet from '../components/Sheet'
 import Home from '../components/Home'
 import KendoSheet from "@/components/KendoSheet";
 
@@ -18,7 +18,7 @@ export default new Router({
         {
             path : '/sheet/:category/:name',
             name : 'Sheet',
-            component : Sheet
+            component : KendoSheet
         },
         {
             path : '/kendo',
