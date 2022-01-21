@@ -1,8 +1,8 @@
 package com.js.spreadsheet.sheet.service;
 
 import com.js.spreadsheet.exception.NoSheetFoundException;
-import com.js.spreadsheet.sheet.application.dto.RowDto;
-import com.js.spreadsheet.sheet.application.service.legacy.SheetSearchService;
+import com.js.spreadsheet.sheet.legacy.application.dto.RowDto;
+import com.js.spreadsheet.sheet.legacy.application.service.SheetSearchService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

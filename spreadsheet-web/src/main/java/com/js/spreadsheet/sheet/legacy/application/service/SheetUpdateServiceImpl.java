@@ -1,15 +1,15 @@
-package com.js.spreadsheet.sheet.application.service.legacy;
+package com.js.spreadsheet.sheet.legacy.application.service;
 
 import com.js.spreadsheet.exception.DuplicationException;
 import com.js.spreadsheet.exception.NoRowFoundException;
 import com.js.spreadsheet.exception.NoSheetFoundException;
-import com.js.spreadsheet.sheet.application.dto.ResponseDto;
-import com.js.spreadsheet.sheet.application.dto.RowDto;
-import com.js.spreadsheet.sheet.application.dto.RowUpdateDto;
-import com.js.spreadsheet.sheet.domain.Sheet;
-import com.js.spreadsheet.sheet.domain.SheetJpaRepository;
-import com.js.spreadsheet.sheet.domain.SheetRow;
-import com.js.spreadsheet.sheet.domain.SheetRowJpaRepository;
+import com.js.spreadsheet.sheet.legacy.application.dto.ResponseDto;
+import com.js.spreadsheet.sheet.legacy.application.dto.RowDto;
+import com.js.spreadsheet.sheet.legacy.application.dto.RowUpdateDto;
+import com.js.spreadsheet.sheet.legacy.domain.Sheet;
+import com.js.spreadsheet.sheet.legacy.domain.SheetJpaRepository;
+import com.js.spreadsheet.sheet.legacy.domain.SheetRow;
+import com.js.spreadsheet.sheet.legacy.domain.SheetRowJpaRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

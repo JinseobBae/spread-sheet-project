@@ -1,14 +1,12 @@
-package com.js.spreadsheet.sheet.domain;
+package com.js.spreadsheet.sheet.legacy.domain;
 
-import com.js.spreadsheet.sheet.application.dto.RowDto;
-import com.js.spreadsheet.sheet.application.dto.RowUpdateDto;
+import com.js.spreadsheet.sheet.legacy.application.dto.RowDto;
+import com.js.spreadsheet.sheet.legacy.application.dto.RowUpdateDto;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
 
 @Getter
 @Entity

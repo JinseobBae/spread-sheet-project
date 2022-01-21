@@ -1,8 +1,8 @@
-package com.js.spreadsheet.sheet.presentation;
+package com.js.spreadsheet.sheet.legacy.presentation;
 
-import com.js.spreadsheet.sheet.application.dto.RowDto;
-import com.js.spreadsheet.sheet.application.service.legacy.RowSearchService;
-import com.js.spreadsheet.sheet.application.service.legacy.SheetSearchService;
+import com.js.spreadsheet.sheet.legacy.application.dto.RowDto;
+import com.js.spreadsheet.sheet.legacy.application.service.RowSearchService;
+import com.js.spreadsheet.sheet.legacy.application.service.SheetSearchService;
 import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package com.js.spreadsheet.sheet.domain;
+package com.js.spreadsheet.sheet.legacy.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;

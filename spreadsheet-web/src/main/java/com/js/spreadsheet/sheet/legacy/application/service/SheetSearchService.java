@@ -1,8 +1,7 @@
-package com.js.spreadsheet.sheet.application.service.legacy;
+package com.js.spreadsheet.sheet.legacy.application.service;
 
-import com.js.spreadsheet.sheet.application.dto.RowDto;
+import com.js.spreadsheet.sheet.legacy.application.dto.RowDto;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

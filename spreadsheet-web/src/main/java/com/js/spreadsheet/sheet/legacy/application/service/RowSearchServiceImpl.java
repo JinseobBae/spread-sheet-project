@@ -1,8 +1,8 @@
-package com.js.spreadsheet.sheet.application.service.legacy;
+package com.js.spreadsheet.sheet.legacy.application.service;
 
-import com.js.spreadsheet.sheet.application.dto.RowDto;
-import com.js.spreadsheet.sheet.domain.SheetRow;
-import com.js.spreadsheet.sheet.domain.SheetRowJpaRepository;
+import com.js.spreadsheet.sheet.legacy.application.dto.RowDto;
+import com.js.spreadsheet.sheet.legacy.domain.SheetRow;
+import com.js.spreadsheet.sheet.legacy.domain.SheetRowJpaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

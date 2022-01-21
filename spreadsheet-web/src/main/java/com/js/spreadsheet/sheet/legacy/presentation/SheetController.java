@@ -1,9 +1,9 @@
-package com.js.spreadsheet.sheet.presentation;
+package com.js.spreadsheet.sheet.legacy.presentation;
 
-import com.js.spreadsheet.sheet.application.dto.ResponseDto;
-import com.js.spreadsheet.sheet.application.dto.RowDto;
-import com.js.spreadsheet.sheet.application.dto.RowUpdateDto;
-import com.js.spreadsheet.sheet.application.service.legacy.SheetUpdateService;
+import com.js.spreadsheet.sheet.legacy.application.dto.ResponseDto;
+import com.js.spreadsheet.sheet.legacy.application.dto.RowDto;
+import com.js.spreadsheet.sheet.legacy.application.dto.RowUpdateDto;
+import com.js.spreadsheet.sheet.legacy.application.service.SheetUpdateService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

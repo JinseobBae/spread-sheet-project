@@ -1,4 +1,4 @@
-package com.js.spreadsheet.sheet.application.dto;
+package com.js.spreadsheet.sheet.legacy.application.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

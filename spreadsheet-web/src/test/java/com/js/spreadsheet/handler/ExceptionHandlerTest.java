@@ -4,7 +4,7 @@ import com.js.spreadsheet.BaseTestController;
 import com.js.spreadsheet.exception.DuplicationException;
 import com.js.spreadsheet.exception.NoRowFoundException;
 import com.js.spreadsheet.exception.NoSheetFoundException;
-import com.js.spreadsheet.sheet.application.dto.RowDto;
+import com.js.spreadsheet.sheet.legacy.application.dto.RowDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MvcResult;
