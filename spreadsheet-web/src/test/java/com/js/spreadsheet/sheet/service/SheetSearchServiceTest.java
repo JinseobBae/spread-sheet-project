@@ -2,13 +2,11 @@ package com.js.spreadsheet.sheet.service;
 
 import com.js.spreadsheet.exception.NoSheetFoundException;
 import com.js.spreadsheet.sheet.application.dto.RowDto;
-import com.js.spreadsheet.sheet.application.service.SheetSearchService;
+import com.js.spreadsheet.sheet.application.service.legacy.SheetSearchService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 

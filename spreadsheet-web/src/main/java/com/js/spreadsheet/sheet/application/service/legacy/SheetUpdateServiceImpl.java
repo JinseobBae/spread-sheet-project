@@ -1,4 +1,4 @@
-package com.js.spreadsheet.sheet.application.service;
+package com.js.spreadsheet.sheet.application.service.legacy;
 
 import com.js.spreadsheet.exception.DuplicationException;
 import com.js.spreadsheet.exception.NoRowFoundException;

@@ -1,8 +1,8 @@
 package com.js.spreadsheet.sheet.presentation;
 
 import com.js.spreadsheet.sheet.application.dto.RowDto;
-import com.js.spreadsheet.sheet.application.service.RowSearchService;
-import com.js.spreadsheet.sheet.application.service.SheetSearchService;
+import com.js.spreadsheet.sheet.application.service.legacy.RowSearchService;
+import com.js.spreadsheet.sheet.application.service.legacy.SheetSearchService;
 import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,9 +53,9 @@ public class SheetSearchController {
         return result;
     }
 
-    @GetMapping("search-kendo")
-    List<Map<String, Object>> findDataForKendo(RowDto rowDto){
-        return sheetSearchService.findRowDataKendo(rowDto);
-    }
+//    @GetMapping("search-kendo")
+//    List<Map<String, Object>> findDataForKendo(RowDto rowDto){
+//        return sheetSearchService.findRowDataKendo(rowDto);
+//    }
 
 }

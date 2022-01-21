@@ -1,7 +1,7 @@
 package com.js.spreadsheet.sheet.service;
 
 import com.js.spreadsheet.sheet.application.dto.RowDto;
-import com.js.spreadsheet.sheet.application.service.RowSearchService;
+import com.js.spreadsheet.sheet.application.service.legacy.RowSearchService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

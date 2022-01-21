@@ -1,4 +1,4 @@
-package com.js.spreadsheet.sheet.application.service;
+package com.js.spreadsheet.sheet.application.service.legacy;
 
 import com.js.spreadsheet.exception.NoSheetFoundException;
 import com.js.spreadsheet.sheet.application.dto.RowDto;
@@ -6,10 +6,8 @@ import com.js.spreadsheet.sheet.domain.Sheet;
 import com.js.spreadsheet.sheet.domain.SheetJpaRepository;
 import com.js.spreadsheet.sheet.domain.SheetRow;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 

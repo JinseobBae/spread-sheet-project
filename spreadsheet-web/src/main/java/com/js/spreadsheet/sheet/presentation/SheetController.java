@@ -3,7 +3,7 @@ package com.js.spreadsheet.sheet.presentation;
 import com.js.spreadsheet.sheet.application.dto.ResponseDto;
 import com.js.spreadsheet.sheet.application.dto.RowDto;
 import com.js.spreadsheet.sheet.application.dto.RowUpdateDto;
-import com.js.spreadsheet.sheet.application.service.SheetUpdateService;
+import com.js.spreadsheet.sheet.application.service.legacy.SheetUpdateService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

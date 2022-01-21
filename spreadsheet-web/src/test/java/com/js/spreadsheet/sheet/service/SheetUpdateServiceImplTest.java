@@ -5,7 +5,7 @@ import com.js.spreadsheet.exception.NoSheetFoundException;
 import com.js.spreadsheet.sheet.application.dto.ResponseDto;
 import com.js.spreadsheet.sheet.application.dto.RowDto;
 import com.js.spreadsheet.sheet.application.dto.RowUpdateDto;
-import com.js.spreadsheet.sheet.application.service.SheetUpdateService;
+import com.js.spreadsheet.sheet.application.service.legacy.SheetUpdateService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
