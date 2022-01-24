@@ -5,7 +5,6 @@
                  :toolbar="toolbarSetting"
                  :rows="1000"
                  v-on:render="onRender"
-                 v-on:select="onSelect"
                  v-on:change="onChange"
                  v-on:changeformat="onChangeFormat"
                  v-on:excelexport="onExcelExport"
@@ -24,9 +23,8 @@
                  v-on:insertcolumn="onInsertColumn"
                  v-on:insertrow="onInsertRow">
       <spreadsheet-sheet :name="'Data sheet'"
-                         :rows="rows"
-                         :columns="columns"
-                         :data-source="datas"
+
+
 
       >
       </spreadsheet-sheet>
@@ -38,27 +36,27 @@
 
 // window.JSZip = JSZip;
 
-import {findRowKendo, changeSheetData} from '@/api/api'
+import { findRow, changeSheetData} from '@/api/api'
 
 export default {
   name: 'App',
   mounted: function () {
-    var spreadsheet = this.$refs.spreadsheet.kendoWidget();
+    const spreadsheet = this.$refs.spreadsheet.kendoWidget();
     spreadsheet.element.css('height', '800px');
     spreadsheet.element.css('width', '100%');
     spreadsheet.resize();
 
-    var sheet = spreadsheet.activeSheet();
-    findRowKendo(this.$route.params.name).then((r) => {
-      sheet.range("A1:AX1000").values(r)
+    const sheet = spreadsheet.activeSheet();
+    findRow(this.$route.params.name).then((r) => {
+      sheet.fromJSON(r)
+      sheet.frozenRows(r.frozenRows)
+      sheet.frozenColumns(r.frozenColumns)
     })
   },
+
   data(){
     return {
-      toolbarSetting : {data : false},
-      rows : [],
-      columns : []
-
+      toolbarSetting : {data : false}
     }
   },
 
@@ -71,22 +69,13 @@ export default {
   },
 
   methods: {
-    // initRowStyle() {
-    //   return [
-    //     ];
-    // },
-    myTest(){
-      alert("myTEst")
-    },
     onRender () {
-      // console.log("Spreadsheet is rendered");
+
     },
-    onSelect (arg) {
-      console.log("New range selected. New value: " + arg.range.value());
-    },
+    // onSelect (arg) {
+    //
+    // },
     onChange (arg) { // cell update
-      // console.log(JSON.parse(JSON.stringify(arg)));
-      console.log(JSON.parse(JSON.stringify(arg.range._sheet)));
       changeSheetData(arg.range._sheet.toJSON(), this.$route.params.name )
     },
     onChangeFormat (arg) {

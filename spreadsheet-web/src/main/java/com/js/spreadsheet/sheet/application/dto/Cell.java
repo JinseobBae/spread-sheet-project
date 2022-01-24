@@ -11,6 +11,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Cell implements Serializable {
 
+    public static final long serialVersionUID = 6429414617507611428L;
+
     Long index;
     String value;
 
@@ -23,5 +25,8 @@ public class Cell implements Serializable {
     boolean bold;
     boolean italic;
     boolean underline;
+
+    String textAlign;
+    String verticalAlign;
 
 }

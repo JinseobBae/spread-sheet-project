@@ -7,11 +7,12 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-public class RowChangeDto {
+@AllArgsConstructor
+@Builder
+public class RowResponseDto {
 
     List<Column> columns;
     List<Row> rows;
-    String sheetName;
     Long frozenColumns;
     Long frozenRows;
 }

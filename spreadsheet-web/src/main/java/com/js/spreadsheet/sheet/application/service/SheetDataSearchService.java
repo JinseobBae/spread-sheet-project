@@ -1,8 +1,8 @@
 package com.js.spreadsheet.sheet.application.service;
 
-import com.js.spreadsheet.sheet.application.dto.Cell;
+import com.js.spreadsheet.sheet.application.dto.RowResponseDto;
+import com.js.spreadsheet.sheet.application.dto.Column;
 import com.js.spreadsheet.sheet.application.dto.Row;
-import com.js.spreadsheet.sheet.application.dto.RowSearchDto;
 import com.js.spreadsheet.sheet.domain.SheetData;
 import com.js.spreadsheet.sheet.domain.SheetDataRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,35 +18,30 @@ public class SheetDataSearchService {
 
     private final SheetDataRepository sheetDataRepository;
 
-    public Object[][] searchRow(RowSearchDto rowsSearchDto){
-        SheetData sheetData = sheetDataRepository.findById(rowsSearchDto.getSheetName())
+    public RowResponseDto searchRow(String sheetName){
+        SheetData sheetData = sheetDataRepository.findById(sheetName)
                 .orElse(null);
 
-        Object[][] resultData = null;
-        if(sheetData != null){
-            List<Row> rows = (List) toObject.apply(sheetData.getRowData());
-
-            OptionalInt maxRowIndex = rows.stream()
-                    .mapToInt(row -> row.getIndex().intValue())
-                    .max();
-
-            OptionalInt maxColumnIndex = rows.stream()
-                    .flatMap(row -> row.getCells().stream())
-                    .mapToInt(cell -> cell.getIndex().intValue())
-                    .max();
-
-            resultData = new Object[maxRowIndex.getAsInt() + 1][maxColumnIndex.getAsInt() + 1];
-            for(Row row : rows){
-                int idx = row.getIndex().intValue();
-                for(Cell cell : row.getCells()){
-                    if(cell.getValue() != null){
-                        resultData[idx][cell.getIndex().intValue()] = cell.getValue();
-                    }
-                }
+        List<Row> rows = (List) toObject.apply(sheetData.getRowData());
+        rows.forEach(row -> {
+            if(row.getHeight() == null){
+                row.setHeight(20L);
             }
-        }
+        });
 
-        return resultData != null ? resultData : new Object[1][];
+        List<Column> columns = (List) toObject.apply(sheetData.getColumnData());
 
+        columns.forEach(column -> {
+            if(column.getWidth() == null){
+                column.setWidth(70L);
+            }
+        });
+
+        return RowResponseDto.builder()
+                .columns(columns)
+                .rows(rows)
+                .frozenColumns(sheetData.getFrozenColumns())
+                .frozenRows(sheetData.getFrozenRows())
+                .build();
     }
 }

@@ -137,21 +137,17 @@ const findSearchRow = (searchValue) => {
     })
 }
 
-const findRowKendo = (sheetName) => {
-    return axios.get('sheet/search-kendo', {
-        params : {
-            sheetName : sheetName
-        }
-    }).then( response => {
+const findRow = (sheetName) => {
+    return axios.get('sheet/search/' + sheetName)
+        .then( response => {
         return response.data
     }).catch(error => {
         alert(error.response.data.message)
     })
+
 }
 
 const changeSheetData = (allData, sheetName) => {
-    console.log(allData);
-    window.mytest = allData;
     axios.post('sheet/kendo-change',
         {
             rows : allData.rows,
@@ -168,4 +164,4 @@ const changeSheetData = (allData, sheetName) => {
     )
 }
 
-export { fetchRows , fetchLables , fetchAllSheets, addRow , delRow , updateRow , findSearchRow , findRowKendo, changeSheetData}
+export { fetchRows , fetchLables , fetchAllSheets, addRow , delRow , updateRow , findSearchRow , changeSheetData, findRow}
