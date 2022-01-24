@@ -37,6 +37,7 @@ public class SheetExceptionHandler {
             String errMsg = ((SpreadsheetException) exception).getErrMsg();
             result.put("message", messageSourceAccessor.getMessage(errMsg, errMsg, Locale.getDefault()));
         }else{
+            exception.printStackTrace();
             result.put("message", "Internal error. cause : " + exception.getMessage());
         }
 

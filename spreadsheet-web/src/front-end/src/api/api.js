@@ -54,7 +54,7 @@ const fetchAllSheets = () =>{
 
     }
 
-    axios.get('sheet/sheet')
+    axios.get('/sheet/sheet')
         .then( response => {
             const sheets = response.data
 
@@ -149,10 +149,16 @@ const findRowKendo = (sheetName) => {
     })
 }
 
-const changeSheetData = (allData) => {
+const changeSheetData = (allData, sheetName) => {
+    console.log(allData);
+    window.mytest = allData;
     axios.post('sheet/kendo-change',
         {
-            data : allData.rows,
+            rows : allData.rows,
+            columns : allData.columns,
+            frozenColumns : allData.frozenColumns,
+            frozenRows : allData.frozenRows,
+            sheetName : sheetName
         },
         {
             headers: {

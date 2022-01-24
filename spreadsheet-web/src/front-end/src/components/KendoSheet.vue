@@ -47,28 +47,18 @@ export default {
     spreadsheet.element.css('height', '800px');
     spreadsheet.element.css('width', '100%');
     spreadsheet.resize();
+
+    var sheet = spreadsheet.activeSheet();
+    findRowKendo(this.$route.params.name).then((r) => {
+      sheet.range("A1:AX1000").values(r)
+    })
   },
   data(){
     return {
       toolbarSetting : {data : false},
-      rows : [{
-        height:50,
-        cells :[{textAlign:"center", verticalAlign:"center"}]
-      }],
-      columns : [],
-      datas: {
-        transport: {
-          read: (options) => {
-            this.dataInit(options)
-          },
-          update: (options) => {
-            console.log(options)
-            alert("submit!!")
-          }
-        },
-        autoSync : true
+      rows : [],
+      columns : []
 
-      }
     }
   },
 
@@ -81,11 +71,10 @@ export default {
   },
 
   methods: {
-    dataInit(options){
-      findRowKendo(this.$route.params.name).then( r => {
-        options.success(r)
-      })
-    },
+    // initRowStyle() {
+    //   return [
+    //     ];
+    // },
     myTest(){
       alert("myTEst")
     },
@@ -97,8 +86,8 @@ export default {
     },
     onChange (arg) { // cell update
       // console.log(JSON.parse(JSON.stringify(arg)));
-      // console.log(JSON.stringify(arg.range._sheet));
-      changeSheetData(arg.range._sheet.toJSON())
+      console.log(JSON.parse(JSON.stringify(arg.range._sheet)));
+      changeSheetData(arg.range._sheet.toJSON(), this.$route.params.name )
     },
     onChangeFormat (arg) {
       console.log("Format of the range with value " + arg.range.value() + " changed to " + arg.range.format());
