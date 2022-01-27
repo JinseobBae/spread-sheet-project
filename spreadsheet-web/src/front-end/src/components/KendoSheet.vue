@@ -63,7 +63,8 @@ export default {
   watch : {
     $route(to, from){ // router 변경 감지
       if( to.path !== from.path){
-        this.$router.go(); // 화면 refresh
+        window.location.reload()
+        // this.$router.go(); // 화면 refresh
       }
     }
   },
