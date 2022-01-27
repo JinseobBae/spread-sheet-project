@@ -18,7 +18,7 @@ export default new Router({
         {
             path : '/sheet/:category/:name',
             name : 'Sheet',
-            component : KendoSheet
+            component : KendoSheet,
         },
         {
             path : '/kendo',

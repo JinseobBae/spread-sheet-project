@@ -54,7 +54,7 @@ const fetchAllSheets = () =>{
 
     }
 
-    axios.get('/sheet/sheet')
+    axios.get('sheet/sheet')
         .then( response => {
             const sheets = response.data
 
