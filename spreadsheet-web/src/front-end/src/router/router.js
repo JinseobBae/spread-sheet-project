@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Sheet from '../components/Sheet'
 import Home from '../components/Home'
 import KendoSheet from "@/components/KendoSheet";
+import Register from "@/components/Register";
 
 
 Vue.use(Router)
@@ -24,6 +24,11 @@ export default new Router({
             path : '/kendo',
             name :'Kendo',
             component : KendoSheet
+        },
+        {
+            path : '/sheet/register',
+            name : 'Register',
+            component : Register
         }
     ]
 })

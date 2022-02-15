@@ -41,14 +41,16 @@ const fetchAllSheets = () =>{
                 path: ""
             },
             {
-                type: "link",
-                text: "Kendo-TEST",
-                path: "/kendo"
-            },
-            {
                 type: "spacer",
                 text: "",
                 path: ""
+            }
+        ],
+        menuOptionsRight:[
+            {
+                type: "button",
+                text: "ADD",
+                path: "/sheet/register"
             }
         ]
 
