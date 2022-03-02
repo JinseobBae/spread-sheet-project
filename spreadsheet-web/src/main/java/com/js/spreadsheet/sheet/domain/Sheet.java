@@ -28,10 +28,10 @@ public class Sheet {
     String category;
 
 
-    @OneToMany(mappedBy = "sheet", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "sheet", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     List<SheetRow> rows = new ArrayList<>();
 
-    @OneToOne(mappedBy = "sheet", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "sheet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     SheetLabel label;
 
 
