@@ -1,5 +1,6 @@
 package com.js.spreadsheet.sheet.legacy.domain;
 
+import com.js.spreadsheet.sheet.domain.Sheet;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

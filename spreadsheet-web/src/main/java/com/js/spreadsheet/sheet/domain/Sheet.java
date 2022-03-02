@@ -1,5 +1,7 @@
-package com.js.spreadsheet.sheet.legacy.domain;
+package com.js.spreadsheet.sheet.domain;
 
+import com.js.spreadsheet.sheet.legacy.domain.SheetLabel;
+import com.js.spreadsheet.sheet.legacy.domain.SheetRow;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;

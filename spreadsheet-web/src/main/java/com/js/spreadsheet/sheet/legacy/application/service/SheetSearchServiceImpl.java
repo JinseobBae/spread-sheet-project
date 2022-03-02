@@ -2,8 +2,8 @@ package com.js.spreadsheet.sheet.legacy.application.service;
 
 import com.js.spreadsheet.exception.NoSheetFoundException;
 import com.js.spreadsheet.sheet.legacy.application.dto.RowDto;
-import com.js.spreadsheet.sheet.legacy.domain.Sheet;
-import com.js.spreadsheet.sheet.legacy.domain.SheetJpaRepository;
+import com.js.spreadsheet.sheet.domain.Sheet;
+import com.js.spreadsheet.sheet.domain.SheetJpaRepository;
 import com.js.spreadsheet.sheet.legacy.domain.SheetRow;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

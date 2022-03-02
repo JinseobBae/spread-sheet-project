@@ -1,5 +1,6 @@
 package com.js.spreadsheet.sheet.legacy.domain;
 
+import com.js.spreadsheet.sheet.domain.Sheet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 

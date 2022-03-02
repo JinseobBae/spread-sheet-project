@@ -1,4 +1,4 @@
-package com.js.spreadsheet.sheet.legacy.domain;
+package com.js.spreadsheet.sheet.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

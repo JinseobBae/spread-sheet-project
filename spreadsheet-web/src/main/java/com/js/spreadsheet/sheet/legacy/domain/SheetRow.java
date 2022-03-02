@@ -1,5 +1,6 @@
 package com.js.spreadsheet.sheet.legacy.domain;
 
+import com.js.spreadsheet.sheet.domain.Sheet;
 import com.js.spreadsheet.sheet.legacy.application.dto.RowDto;
 import com.js.spreadsheet.sheet.legacy.application.dto.RowUpdateDto;
 import lombok.*;
