@@ -49,7 +49,7 @@ const fetchAllSheets = () =>{
         menuOptionsRight:[
             {
                 type: "button",
-                text: "ADD",
+                text: "SHEET 추가",
                 path: "/sheet/register"
             }
         ]

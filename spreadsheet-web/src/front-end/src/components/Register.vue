@@ -4,20 +4,21 @@
     <form v-on:submit="submitSheet" >
       <h4>Category<span>*</span></h4>
       <select v-model="selectedCategory">
+        <option :value="null" disabled>카테고리를 선택하세요.</option>
         <option v-for="category in categoryList" v-bind:key="category.categoryName" v-bind:value="category.categoryName">
           {{category.categoryName}}
         </option>
       </select>
       <button id="show-modal" @click="openModal">+</button>
       <h4>Sheet 명<span>*</span><p>모든 Category 내에서 중복 불가</p></h4>
-      <input type="text" name="name" v-model="formData.sheet" />
+      <input type="text" name="name" v-model="formData.sheet" placeholder="Sheet명을 입력해주세요." />
       <div class="btn-block">
         <button type="submit">추가</button>
       </div>
     </form>
 
-    <Modal v-if="showModal" @close-modal="showModal = false">
-      <CategoryAdd msg=""/>
+    <Modal v-if="showModal" @close-modal="showModal = false" @push-category="pushCategory">
+      <CategoryAdd @push-category="pushCategory" msg=""/>
     </Modal>
 
   </div>
@@ -51,9 +52,29 @@ export default {
     },
     submitSheet(evt){
       evt.preventDefault()
-      addSheet(this.selectedCategory, this.formData.sheet)
+
+      if(this.selectedCategory !== '' && this.formData.sheet !== undefined && this.formData.sheet.trim() !== ''){
+        addSheet(this.selectedCategory, this.formData.sheet)
+      }else{
+        alert("값을 전부 입력해주세요.")
+      }
       // window.location.reload()
-    }
+    },
+    pushCategory(categoryName){
+      let isDup = false;
+
+      this.categoryList.forEach((ec) => {
+        if(ec.categoryName === categoryName){
+          alert("중복된 카테고리입니다.");
+          isDup = true;
+        }
+      })
+
+      if(!isDup){
+        this.categoryList.push({categoryName : categoryName})
+        this.showModal = false
+      }
+    },
 
   },
 
