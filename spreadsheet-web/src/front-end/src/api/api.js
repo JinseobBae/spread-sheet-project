@@ -166,4 +166,37 @@ const changeSheetData = (allData, sheetName) => {
     )
 }
 
-export { fetchRows , fetchLables , fetchAllSheets, addRow , delRow , updateRow , findSearchRow , changeSheetData, findRow}
+const findAllCategories = () => {
+    return axios.get('sheet/categories')
+        .then(response =>{
+            return response.data
+        })
+        .catch(error =>{
+            alert(error.response.data.message)
+        })
+}
+
+
+const addSheet = (category, sheetName) => {
+    axios.post('sheet/sheet',
+    {
+            category : category,
+            sheet : sheetName
+        },
+        {
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }
+        ).then(response => {
+            alert(response.data.msg)
+            window.location.reload()
+        })
+        .catch(error => {
+            alert(error.response.data.message)
+        })
+}
+
+
+
+export { fetchRows , fetchLables , fetchAllSheets, addRow , delRow , updateRow , findSearchRow , changeSheetData, findRow, findAllCategories, addSheet}

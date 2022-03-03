@@ -1,6 +1,6 @@
 package com.js.spreadsheet.sheet.legacy.presentation;
 
-import com.js.spreadsheet.sheet.legacy.application.dto.ResponseDto;
+import com.js.spreadsheet.sheet.application.dto.ResponseDto;
 import com.js.spreadsheet.sheet.legacy.application.dto.RowDto;
 import com.js.spreadsheet.sheet.legacy.application.dto.RowUpdateDto;
 import com.js.spreadsheet.sheet.legacy.application.service.SheetUpdateService;
@@ -14,11 +14,6 @@ public class SheetController {
 
     public SheetController(SheetUpdateService sheetUpdateService){
         this.sheetUpdateService = sheetUpdateService;
-    }
-
-    @PostMapping("sheet")
-    ResponseDto addSheet(@RequestBody RowDto rowDto){
-        return sheetUpdateService.addSheet(rowDto);
     }
 
     @DeleteMapping("sheet")

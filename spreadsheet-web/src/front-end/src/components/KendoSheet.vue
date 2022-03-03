@@ -3,7 +3,7 @@
     <spreadsheet ref="spreadsheet"
                  :sheetsbar="false"
                  :toolbar="toolbarSetting"
-                 :rows="1000"
+                 :rows="5000"
                  v-on:render="onRender"
                  v-on:change="onChange"
                  v-on:changeformat="onChangeFormat"
@@ -48,9 +48,13 @@ export default {
 
     const sheet = spreadsheet.activeSheet();
     findRow(this.$route.params.name).then((r) => {
-      sheet.fromJSON(r)
-      sheet.frozenRows(r.frozenRows)
-      sheet.frozenColumns(r.frozenColumns)
+      console.log(r)
+      if(r.columns != null && r.rows != null){
+        sheet.fromJSON(r)
+        sheet.frozenRows(r.frozenRows)
+        sheet.frozenColumns(r.frozenColumns)
+      }
+
     })
   },
 

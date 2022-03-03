@@ -1,25 +1,23 @@
 <template>
   <div class="add_sheet">
-    <form action="/">
-      <h4>Type of Feedback<span>*</span></h4>
-      <select>
-        <option value=""></option>
-        <option value="">Enquiry</option>
-        <option value="2">Complaint</option>
-        <option value="3">Compliment</option>
-        <option value="4">Suggestion</option>
+    <h1>Sheet 추가하기</h1>
+    <form v-on:submit="submitSheet" >
+      <h4>Category<span>*</span></h4>
+      <select v-model="selectedCategory">
+        <option v-for="category in categoryList" v-bind:key="category.categoryName" v-bind:value="category.categoryName">
+          {{category.categoryName}}
+        </option>
       </select>
-
       <button id="show-modal" @click="openModal">+</button>
-      <h4>Email Address<span>*</span></h4>
-      <input type="text" name="name" />
+      <h4>Sheet 명<span>*</span><p>모든 Category 내에서 중복 불가</p></h4>
+      <input type="text" name="name" v-model="formData.sheet" />
       <div class="btn-block">
-        <button type="submit" href="/">Send Feedback</button>
+        <button type="submit">추가</button>
       </div>
     </form>
 
     <Modal v-if="showModal" @close-modal="showModal = false">
-      <CategoryAdd msg="hi?"/>
+      <CategoryAdd msg=""/>
     </Modal>
 
   </div>
@@ -28,6 +26,8 @@
 <script>
 import Modal from "@/components/Modal";
 import CategoryAdd from "@/components/CategoryAdd";
+import {findAllCategories, addSheet} from "@/api/api";
+
 export default {
   name: "Register",
   components : {
@@ -38,7 +38,9 @@ export default {
     return {
       showModal: false,
       selectedCategory: '',
-      categoryList: []
+      categoryList: [],
+      formData: {}
+
     };
   },
 
@@ -46,19 +48,25 @@ export default {
     openModal(evt){
       evt.preventDefault()
       this.showModal =true
+    },
+    submitSheet(evt){
+      evt.preventDefault()
+      addSheet(this.selectedCategory, this.formData.sheet)
+      // window.location.reload()
     }
 
+  },
+
+  mounted() {
+    findAllCategories().then(response => {
+      this.categoryList = response
+    })
   }
 
 }
 </script>
 
 <style scoped>
-
-.add_sheet{
-  height: 800px;
-  flex-direction: column;
-}
 
 html, body {
   min-height: 100%;
@@ -72,8 +80,15 @@ body, div, form, input, select {
   color: #666;
   line-height: 22px;
 }
+p {
+  font-size : 11px;
+  margin-top: 10px;
+}
+h1{
+  margin: 15px 0 30px;
+}
+
 h1, h4 {
-  margin: 15px 0 4px;
   font-weight: 400;
 }
 h4 {
@@ -93,15 +108,17 @@ span {
   align-items: center;
   height: inherit;
   padding: 3px;
+  flex-direction: column;
 }
 form {
   width: 50%;
   padding: 20px;
   background: #fff;
   box-shadow: 0 2px 5px #ccc;
+  text-align: left;
 }
 input {
-  width: calc(100% - 10px);
+  width: calc(100% - 100px);
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 3px;
@@ -187,7 +204,7 @@ button {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  background-color: #095484;
+  background-color: #007AFF;
   font-size: 16px;
   color: #fff;
   cursor: pointer;
@@ -211,5 +228,22 @@ button:hover {
   th, td {
     word-break: keep-all;
   }
+}
+
+#show-modal{
+  width: 50px;
+  height: 40px;
+  margin-left: 10px;
+
+  /*width: 150px;*/
+  /*padding: 10px;*/
+  /*border: none;*/
+  /*-webkit-border-radius: 5px;*/
+  /*-moz-border-radius: 5px;*/
+  /*border-radius: 5px;*/
+  /*background-color: #095484;*/
+  /*font-size: 16px;*/
+  /*color: #fff;*/
+  /*cursor: pointer;*/
 }
 </style>

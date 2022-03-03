@@ -15,4 +15,11 @@ public class RowResponseDto {
     List<Row> rows;
     Long frozenColumns;
     Long frozenRows;
+
+    public void copy(RowResponseDto rowResponseDto){
+        this.columns = rowResponseDto.getColumns();
+        this.rows = rowResponseDto.getRows();
+        this.frozenColumns = rowResponseDto.getFrozenColumns();
+        this.frozenRows = rowResponseDto.frozenRows;
+    }
 }

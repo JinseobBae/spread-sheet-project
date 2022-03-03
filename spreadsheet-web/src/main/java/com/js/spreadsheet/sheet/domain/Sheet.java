@@ -36,8 +36,9 @@ public class Sheet {
 
 
     @Builder
-    public Sheet(String sheetName){
+    public Sheet(String sheetName, String category){
         this.sheetName = sheetName;
+        this.category = category;
     }
 
 }

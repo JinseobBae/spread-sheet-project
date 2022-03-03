@@ -3,7 +3,7 @@ package com.js.spreadsheet.sheet.legacy.application.service;
 import com.js.spreadsheet.exception.DuplicationException;
 import com.js.spreadsheet.exception.NoRowFoundException;
 import com.js.spreadsheet.exception.NoSheetFoundException;
-import com.js.spreadsheet.sheet.legacy.application.dto.ResponseDto;
+import com.js.spreadsheet.sheet.application.dto.ResponseDto;
 import com.js.spreadsheet.sheet.legacy.application.dto.RowDto;
 import com.js.spreadsheet.sheet.legacy.application.dto.RowUpdateDto;
 import com.js.spreadsheet.sheet.domain.Sheet;

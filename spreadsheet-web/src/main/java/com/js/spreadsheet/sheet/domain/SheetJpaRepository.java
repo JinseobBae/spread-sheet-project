@@ -11,4 +11,6 @@ public interface SheetJpaRepository extends JpaRepository<Sheet, Long> {
 
     List<Sheet> findAllByOrderByIdAsc();
 
+    Optional<Sheet> findBySheetNameAndCategory(String sheetName, String category);
+
 }
