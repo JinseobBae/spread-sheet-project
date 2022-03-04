@@ -5,7 +5,7 @@
       <span>Sheet를 추가하지 않으면 해당 데이터는 유지되지 않습니다.</span>
     </div>
     <div>
-      <input type="text" v-model="categoryName" placeholder="카테고리명을 입력해주세요."/>
+      <input type="text" v-model="categoryName" placeholder="카테고리명을 입력해주세요." v-on:keyup.enter="addCategory"/>
     </div>
     <div>
       <button @click="addCategory">추가</button>
