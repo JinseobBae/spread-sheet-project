@@ -45,14 +45,16 @@ export default {
     spreadsheet.element.css('height', '800px');
     spreadsheet.element.css('width', '100%');
     spreadsheet.resize();
-
     const sheet = spreadsheet.activeSheet();
+    const focusIdx = this.$route.query.idx
     findRow(this.$route.params.name).then((r) => {
-      console.log(r)
       if(r.columns != null && r.rows != null){
         sheet.fromJSON(r)
         sheet.frozenRows(r.frozenRows)
         sheet.frozenColumns(r.frozenColumns)
+        if(focusIdx !== undefined){
+          sheet.range(focusIdx).select()
+        }
       }
 
     })
