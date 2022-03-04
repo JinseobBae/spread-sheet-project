@@ -198,5 +198,16 @@ const addSheet = (category, sheetName) => {
 }
 
 
+const searchFromAll = (keyword) => {
+    axios.get('sheet/searchFromAll', {
+        params:{
+            keyword : keyword
+        }
+    }).then(response => {
+        return response.data
+    })
+}
 
-export { fetchRows , fetchLables , fetchAllSheets, addRow , delRow , updateRow , findSearchRow , changeSheetData, findRow, findAllCategories, addSheet}
+
+
+export { fetchRows , fetchLables , fetchAllSheets, addRow , delRow , updateRow , findSearchRow , changeSheetData, findRow, findAllCategories, addSheet, searchFromAll}
