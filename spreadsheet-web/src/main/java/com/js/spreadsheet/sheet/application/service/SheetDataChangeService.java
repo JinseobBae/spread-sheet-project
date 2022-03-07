@@ -21,6 +21,7 @@ public class SheetDataChangeService {
                 .frozenRows(rowChangeDto.getFrozenRows())
                 .rowData(toByte.apply(rowChangeDto.getRows()))
                 .columnData(toByte.apply(rowChangeDto.getColumns()))
+                .category(rowChangeDto.getCategory())
                 .build();
 
         sheetDataRepository.save(sheetData);

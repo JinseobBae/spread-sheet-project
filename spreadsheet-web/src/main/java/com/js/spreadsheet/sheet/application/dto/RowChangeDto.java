@@ -12,6 +12,7 @@ public class RowChangeDto {
     List<Column> columns;
     List<Row> rows;
     String sheetName;
+    String category;
     Long frozenColumns;
     Long frozenRows;
 }

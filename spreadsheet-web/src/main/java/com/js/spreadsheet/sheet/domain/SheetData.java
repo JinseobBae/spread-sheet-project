@@ -26,4 +26,6 @@ public class SheetData {
     Long frozenColumns;
 
     Long frozenRows;
+
+    String category;
 }
