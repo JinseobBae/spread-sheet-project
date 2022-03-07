@@ -2,6 +2,7 @@ package com.js.spreadsheet.sheet.presentation;
 
 import com.js.spreadsheet.sheet.application.dto.Row;
 import com.js.spreadsheet.sheet.application.dto.RowResponseDto;
+import com.js.spreadsheet.sheet.application.dto.TotalSearch;
 import com.js.spreadsheet.sheet.application.service.SheetDataSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class SheetDataSearchController {
     }
 
     @GetMapping("searchFromAll")
-    List<Row> findRowFromAll(@RequestParam("keyword") String keyword){
+    List<TotalSearch> findRowFromAll(@RequestParam("keyword") String keyword){
         return sheetDataSearchService.searchFromAll(keyword);
     }
 

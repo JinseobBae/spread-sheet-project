@@ -1,22 +1,18 @@
 <template>
   <div class="home">
-    <vue-search/>
-    <router-link :to="{name: 'Sheet', params: {category:'TEST', name:'TEST_SHEET'}, query:{idx:'A40'}}">TEST!!</router-link>
-    <p>
-      <button @click="searchAll">ddddddd</button>
-    </p>
-
+    <total-search/>
   </div>
 </template>
 
 <script>
-import Search from "@/components/Search";
+// import Search from "@/components/Search";
 import {searchFromAll} from "@/api/api"
+import TotalSearch from "@/components/TotalSearch";
 
 export default {
   name: 'Home',
   components:{
-    'vue-search' : Search
+    'total-search' : TotalSearch
   },
   methods: {
     searchAll(){
@@ -41,5 +37,9 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.home{
+  height: 100%;
 }
 </style>

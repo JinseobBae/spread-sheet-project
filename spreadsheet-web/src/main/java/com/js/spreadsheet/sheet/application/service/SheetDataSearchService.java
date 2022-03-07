@@ -1,9 +1,6 @@
 package com.js.spreadsheet.sheet.application.service;
 
-import com.js.spreadsheet.sheet.application.dto.Cell;
-import com.js.spreadsheet.sheet.application.dto.Column;
-import com.js.spreadsheet.sheet.application.dto.Row;
-import com.js.spreadsheet.sheet.application.dto.RowResponseDto;
+import com.js.spreadsheet.sheet.application.dto.*;
 import com.js.spreadsheet.sheet.domain.SheetData;
 import com.js.spreadsheet.sheet.domain.SheetDataRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import static com.js.spreadsheet.sheet.application.utils.ByteObjectConverter.toObject;
@@ -53,17 +51,33 @@ public class SheetDataSearchService {
         return response;
     }
 
-    public List<Row> searchFromAll(String keyword){
+    public List<TotalSearch> searchFromAll(String keyword){
         List<SheetData> allList = sheetDataRepository.findAll();
 
-        List<Row> resultRows = new ArrayList<>();
+        List<TotalSearch> resultRows = new ArrayList<>();
 
         allList.forEach(sheetData -> {
             List<Row> rows = (List) toObject.apply(sheetData.getRowData());
             rows.forEach(row -> {
-                if(row.getCells().stream().anyMatch(checkHasValue(keyword))){
-                    resultRows.add(row);
-                }
+                Optional<Cell> cell = row.getCells().stream()
+                        .filter(checkHasValue(keyword))
+                        .findAny();
+
+                cell.ifPresent(c -> {
+                    String indexPrefix;
+                    if(c.getIndex() <= 25){
+                        indexPrefix = String.valueOf((char) (c.getIndex() + 65));
+                    }else{
+                        indexPrefix = String.valueOf((char) (c.getIndex() - 25 + 65));
+                    }
+
+                    resultRows.add(TotalSearch.builder()
+                            .category(sheetData.getCategory())
+                            .sheet(sheetData.getSheetName())
+                            .index(indexPrefix + (row.getIndex() + 1))
+                            .value(c.getValue())
+                            .build());
+                });
             });
         });
 

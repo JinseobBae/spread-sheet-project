@@ -149,14 +149,15 @@ const findRow = (sheetName) => {
 
 }
 
-const changeSheetData = (allData, sheetName) => {
+const changeSheetData = (allData, sheetName, category) => {
     axios.post('sheet/kendo-change',
         {
             rows : allData.rows,
             columns : allData.columns,
             frozenColumns : allData.frozenColumns,
             frozenRows : allData.frozenRows,
-            sheetName : sheetName
+            sheetName : sheetName,
+            category: category
         },
         {
             headers: {
@@ -199,7 +200,7 @@ const addSheet = (category, sheetName) => {
 
 
 const searchFromAll = (keyword) => {
-    axios.get('sheet/searchFromAll', {
+    return axios.get('sheet/searchFromAll', {
         params:{
             keyword : keyword
         }
