@@ -83,7 +83,7 @@ export default {
     //
     // },
     onChange (arg) { // cell update
-      changeSheetData(arg.range._sheet.toJSON(), this.$route.params.name )
+      changeSheetData(arg.range._sheet.toJSON(), this.$route.params.name , this.$route.params.category)
     },
     onChangeFormat (arg) {
       console.log("Format of the range with value " + arg.range.value() + " changed to " + arg.range.format());
