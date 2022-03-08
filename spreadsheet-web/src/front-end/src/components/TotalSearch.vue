@@ -8,14 +8,24 @@
     </div>
 
     <div id= "result_whole" >
-      <div class="result_sheet" v-if="result.length > 0" >
-        <resultSheetView refs="asdf"/>
-      </div>
-      <div class="result_data" v-if="result.length > 0">
-        <div class="resultBody" v-for="data in result" v-bind:key="data.uuid">
-          <result-view :category="data.category" :sheet="data.sheet" :index="data.index" :value="data.value" @test_emit="emitTestMethod"/>
+      <div class="result_sheet" >
+        <div ref="sheet_search" style="opacity: 0;">
+          <spreadsheet  ref="spreadsheet_search"
+                       :sheetsbar="false"
+                       :toolbar="false"
+                       :rows="5000"
+
+          >
+            <spreadsheet-sheet :name="'Search sheet'"/>
+          </spreadsheet>
         </div>
-    </div>
+      </div>
+      <div class="result_data" >
+        <div class="no_result" v-show="showNoResult">검색 결과가 없습니다 😅 </div>
+        <div class="resultBody" v-for="data in result" v-bind:key="data.uuid">
+          <result-view :category="data.category" :sheet="data.sheet" :index="data.index" :value="data.value" @move_to_cell="moveToSheetAndCell"/>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -24,21 +34,28 @@
 
 <script>
 
-import { searchFromAll } from "@/api/api";
+import {findRow, searchFromAll} from "@/api/api";
 import TotalSearchResult from "@/components/TotalSearchResult";
-import SearchResultSheet from "@/components/SearchResultSheet";
 
 export default {
   name: "TotalSearch",
   components: {
     'result-view' : TotalSearchResult,
-    'resultSheetView' : SearchResultSheet,
   },
+
   data() {
     return {
       search: "",
       result : [],
+      showNoResult : false
     }
+  },
+
+  mounted() {
+    const spreadsheet = this.$refs.spreadsheet_search.kendoWidget();
+    spreadsheet.element.css('height', '700px');
+    spreadsheet.element.css('width', '100%');
+    spreadsheet.resize();
   },
   methods: {
     searchSubmit(e){
@@ -46,17 +63,28 @@ export default {
       if(this.search !== '' && this.search !== 'undefined'){
         searchFromAll(this.search).then(response => {
           this.result = response
+          this.$refs.sheet_search.style.opacity = 1;
+          this.showNoResult = this.result.length === 0
         })
       }else{
         alert("검색어를 입력해주세요.")
       }
 
     },
-    emitTestMethod(resultData){
-      console.log(resultData)
-      console.log(this.$refs)
-      console.log(this.$refs.asdf)
 
+    moveToSheetAndCell(resultData){
+      const spreadsheet = this.$refs.spreadsheet_search.kendoWidget();
+      spreadsheet.element.css('height', '700px');
+      spreadsheet.element.css('width', '100%');
+
+      spreadsheet.resize();
+
+      const sheet = spreadsheet.activeSheet();
+      console.log(resultData)
+      findRow(resultData.sheet).then(response => {
+        sheet.fromJSON(response)
+        sheet.range(resultData.index).select()
+      })
     }
   }
 }
@@ -124,12 +152,21 @@ export default {
   text-align: -webkit-center;
   height: 700px;
   overflow-y: scroll;
+  position: relative;
 }
 
 .resultBody{
   /*background: blue;*/
   margin : 10px 5px 5px 5px;
   max-width: 100%;
+
+}
+
+.no_result{
+  top: calc(50% - 10px);
+  position: absolute;
+  width: 100%;
+  font-size: 2vw;
 
 }
 
