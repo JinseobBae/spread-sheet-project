@@ -28,7 +28,7 @@ new Vue({
   render: h => h(App),
   watch: {
     $route(to){
-      document.title = to.params.name || to.name
+      document.title ='[엑셀] ' +  (to.params.name || to.name)
     }
   }
 }).$mount('#app')
