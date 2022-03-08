@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import static com.js.spreadsheet.sheet.application.utils.ByteObjectConverter.toObject;
@@ -76,6 +77,7 @@ public class SheetDataSearchService {
                             .sheet(sheetData.getSheetName())
                             .index(indexPrefix + (row.getIndex() + 1))
                             .value(c.getValue())
+                            .uuid(UUID.randomUUID().toString())
                             .build());
                 });
             });

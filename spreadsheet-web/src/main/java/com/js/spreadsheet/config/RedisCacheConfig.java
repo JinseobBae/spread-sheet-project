@@ -31,7 +31,7 @@ public class RedisCacheConfig {
         RedisCacheConfiguration redisConfiguration = RedisCacheConfiguration.defaultCacheConfig()
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()))
-                .entryTtl(Duration.ofMinutes(30)); //TTL 적용 가능
+                .entryTtl(Duration.ZERO); //TTL 적용 가능
         return RedisCacheManager.RedisCacheManagerBuilder.fromConnectionFactory(redisConnectionFactory) //Connect 적용
                 .cacheDefaults(redisConfiguration).build();
     }
