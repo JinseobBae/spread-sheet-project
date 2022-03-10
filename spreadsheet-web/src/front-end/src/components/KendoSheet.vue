@@ -45,24 +45,13 @@ export default {
     spreadsheet.element.css('height', '800px');
     spreadsheet.element.css('width', '100%');
     spreadsheet.resize();
-    const sheet = spreadsheet.activeSheet();
-    const focusIdx = this.$route.query.idx
-    findRow(this.$route.params.name).then((r) => {
-      if(r.columns != null && r.rows != null){
-        sheet.fromJSON(r)
-        sheet.frozenRows(r.frozenRows)
-        sheet.frozenColumns(r.frozenColumns)
-        if(focusIdx !== undefined){
-          sheet.range(focusIdx).select()
-        }
-      }
-
-    })
+    this.fetchData();
   },
 
   data(){
     return {
-      toolbarSetting : {data : false}
+      toolbarSetting : {data : false},
+      isClear : true
     }
   },
 
@@ -71,11 +60,31 @@ export default {
       if( to.path !== from.path){
         window.location.reload()
         // this.$router.go(); // 화면 refresh
+        // this.fetchData();
       }
     }
   },
 
   methods: {
+    fetchData(){
+      const spreadsheet = this.$refs.spreadsheet.kendoWidget();
+      const sheet = spreadsheet.activeSheet();
+      const focusIdx = this.$route.query.idx
+
+      window.sheet = sheet
+      window.spreadsheet = this.$refs.spreadsheet
+      findRow(this.$route.params.name).then((r) => {
+        if(r.columns != null && r.rows != null){
+          sheet.fromJSON(r)
+          sheet.frozenRows(r.frozenRows)
+          sheet.frozenColumns(r.frozenColumns)
+          if(focusIdx !== undefined){
+            sheet.range(focusIdx).select()
+          }
+        }
+
+      })
+    },
     onRender () {
 
     },

@@ -1,5 +1,8 @@
 <template>
   <div style="height: 100%">
+
+    <LoadingSpinner v-if="isLoading"/>
+
     <div class="formSet container center_div ">
       <form class="center" id="totalSearchForm" v-on:submit="searchSubmit">
         <input class= "py-2 border-right-0 border" id="searchText" type="search" v-model="search" placeholder="Input text">
@@ -36,10 +39,12 @@
 
 import {findRow, searchFromAll} from "@/api/api";
 import TotalSearchResult from "@/components/TotalSearchResult";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 export default {
   name: "TotalSearch",
   components: {
+    LoadingSpinner,
     'result-view' : TotalSearchResult,
   },
 
@@ -47,7 +52,8 @@ export default {
     return {
       search: "",
       result : [],
-      showNoResult : false
+      showNoResult : false,
+      isLoading : false
     }
   },
 
@@ -60,11 +66,13 @@ export default {
   methods: {
     searchSubmit(e){
       e.preventDefault();
+      this.isLoading = true
       if(this.search !== '' && this.search !== 'undefined'){
         searchFromAll(this.search).then(response => {
           this.result = response
           this.$refs.sheet_search.style.opacity = 1;
           this.showNoResult = this.result.length === 0
+          this.isLoading = false
         })
       }else{
         alert("검색어를 입력해주세요.")
@@ -73,6 +81,7 @@ export default {
     },
 
     moveToSheetAndCell(resultData){
+      this.isLoading = true;
       const spreadsheet = this.$refs.spreadsheet_search.kendoWidget();
       spreadsheet.element.css('height', '700px');
       spreadsheet.element.css('width', '100%');
@@ -80,10 +89,10 @@ export default {
       spreadsheet.resize();
 
       const sheet = spreadsheet.activeSheet();
-      console.log(resultData)
       findRow(resultData.sheet).then(response => {
         sheet.fromJSON(response)
         sheet.range(resultData.index).select()
+        this.isLoading = false
       })
     }
   }

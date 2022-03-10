@@ -69,11 +69,11 @@ export default {
 }
 
 span{
-  font-size: 16px;
+  font-size: 1vw;
 }
 
 p{
-  font-size: 13px;
+  font-size: 0.7vw;
 }
 
 .category_sheet, .value_index{
@@ -121,7 +121,7 @@ span {
 .search_sheet_view_container, .search_router_link_container{
   margin-bottom: 10px;
   width: 50%;
-  font-size: 15px;
+  font-size: 0.8vw;
 }
 
 .search_sheet_view_container{
