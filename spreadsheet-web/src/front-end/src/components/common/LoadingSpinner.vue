@@ -18,6 +18,7 @@ export default {
 .modal{
   display: inline-grid;
   align-content: center;
+  z-index: 99999;
 }
 
 .overlay {
