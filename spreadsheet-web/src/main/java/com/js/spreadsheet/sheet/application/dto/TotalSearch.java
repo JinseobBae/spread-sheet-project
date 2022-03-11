@@ -1,5 +1,6 @@
 package com.js.spreadsheet.sheet.application.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,4 +15,7 @@ public class TotalSearch {
     String sheet;
     String index;
     String value;
+
+    @JsonIgnore
+    long rowIndex;
 }

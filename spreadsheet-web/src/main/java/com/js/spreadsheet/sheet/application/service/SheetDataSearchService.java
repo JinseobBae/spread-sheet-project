@@ -6,10 +6,7 @@ import com.js.spreadsheet.sheet.domain.SheetDataRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Predicate;
 
 import static com.js.spreadsheet.sheet.application.utils.ByteObjectConverter.toObject;
@@ -72,13 +69,19 @@ public class SheetDataSearchService {
                         indexPrefix = String.valueOf((char) (c.getIndex() - 25 + 65));
                     }
 
-                    resultRows.add(TotalSearch.builder()
+                    TotalSearch resultData = TotalSearch.builder()
                             .category(sheetData.getCategory())
                             .sheet(sheetData.getSheetName())
                             .index(indexPrefix + (row.getIndex() + 1))
+                            .rowIndex(row.getIndex() + 1)
                             .value(c.getValue())
                             .uuid(UUID.randomUUID().toString())
-                            .build());
+                            .build();
+
+                    if(!haveSimilarData(resultRows, resultData)){
+                        resultRows.add(resultData);
+                    }
+
                 });
             });
         });
@@ -94,5 +97,22 @@ public class SheetDataSearchService {
                 return cell.getValue().contains(keyword);
             }
         };
+    }
+
+    /**
+     * 결과값의 인덱스를 확인한다.
+     * 동일한 값이 위아래로 40칸 내에 있으면 유사데이터로 판단해서 결과 목록에 추가하지 않는다.
+     * @param resultList
+     * @param resultData
+     * @return
+     */
+    private boolean haveSimilarData(List<TotalSearch> resultList, TotalSearch resultData){
+
+        Optional<TotalSearch> similarData = resultList.stream()
+                .filter(data -> data.getValue().equals(resultData.getValue()))
+                .filter(data -> data.getRowIndex() - 40 <= resultData.getRowIndex() && resultData.getRowIndex() <= data.getRowIndex() + 40)
+                .findAny();
+
+        return similarData.isPresent();
     }
 }
