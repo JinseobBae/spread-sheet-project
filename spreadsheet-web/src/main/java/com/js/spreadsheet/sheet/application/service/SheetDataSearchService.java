@@ -4,6 +4,7 @@ import com.js.spreadsheet.sheet.application.dto.*;
 import com.js.spreadsheet.sheet.domain.SheetData;
 import com.js.spreadsheet.sheet.domain.SheetDataRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -17,6 +18,7 @@ public class SheetDataSearchService {
 
     private final SheetDataRepository sheetDataRepository;
 
+    @Cacheable(cacheNames = "sheet", key = "#sheetName")
     public RowResponseDto searchRow(String sheetName){
 
         RowResponseDto response = new RowResponseDto();
@@ -49,6 +51,7 @@ public class SheetDataSearchService {
         return response;
     }
 
+    @Cacheable(cacheNames = "search", key = "#keyword")
     public List<TotalSearch> searchFromAll(String keyword){
         List<SheetData> allList = sheetDataRepository.findAll();
 
