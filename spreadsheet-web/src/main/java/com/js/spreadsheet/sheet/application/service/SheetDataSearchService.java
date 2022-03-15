@@ -104,16 +104,16 @@ public class SheetDataSearchService {
 
     /**
      * 결과값의 인덱스를 확인한다.
-     * 동일한 값이 위아래로 40칸 내에 있으면 유사데이터로 판단해서 결과 목록에 추가하지 않는다.
+     * 동일한 값이 위아래로 100칸 내에 있으면 유사데이터로 판단해서 결과 목록에 추가하지 않는다.
      * @param resultList
      * @param resultData
      * @return
      */
     private boolean haveSimilarData(List<TotalSearch> resultList, TotalSearch resultData){
 
-        Optional<TotalSearch> similarData = resultList.stream()
+        Optional<TotalSearch> similarData = resultList.parallelStream()
                 .filter(data -> data.getValue().equals(resultData.getValue()))
-                .filter(data -> data.getRowIndex() - 40 <= resultData.getRowIndex() && resultData.getRowIndex() <= data.getRowIndex() + 40)
+                .filter(data -> data.getRowIndex() - 100 <= resultData.getRowIndex() && resultData.getRowIndex() <= data.getRowIndex() + 100)
                 .findAny();
 
         return similarData.isPresent();
