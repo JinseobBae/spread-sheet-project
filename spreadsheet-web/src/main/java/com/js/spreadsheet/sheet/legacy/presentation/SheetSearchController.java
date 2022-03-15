@@ -30,11 +30,6 @@ public class SheetSearchController {
         return sheetSearchService.findRowData(rowDto);
     }
 
-    @GetMapping("label")
-    RowDto findSheetLabel(RowDto rowDto){
-        return sheetSearchService.findRowLabel(rowDto);
-    }
-
     @GetMapping("sheet")
     Map<String, List<RowDto>> findAllSheetList(){
         return sheetSearchService.findSheetData(new RowDto());
@@ -52,10 +47,5 @@ public class SheetSearchController {
         result.put("time", stopWatch.getTotalTimeMillis());
         return result;
     }
-
-//    @GetMapping("search-kendo")
-//    List<Map<String, Object>> findDataForKendo(RowDto rowDto){
-//        return sheetSearchService.findRowDataKendo(rowDto);
-//    }
 
 }

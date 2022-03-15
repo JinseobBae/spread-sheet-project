@@ -10,10 +10,6 @@ public interface SheetSearchService {
 
     List<RowDto> findRowData(RowDto rowDto);
 
-    List<Map<String, Object>> findRowDataKendo(RowDto rowDto);
-
-    RowDto findRowLabel(RowDto rowDto);
-
     Map<String, List<RowDto>> findSheetData(RowDto rowDto);
 
 }

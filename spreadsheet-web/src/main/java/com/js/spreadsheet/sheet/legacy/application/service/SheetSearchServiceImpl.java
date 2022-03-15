@@ -32,15 +32,6 @@ public class SheetSearchServiceImpl implements SheetSearchService{
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public RowDto findRowLabel(RowDto rowDto) {
-        Sheet sheet = sheetJpaRepository.findBySheetName(rowDto.getSheetName())
-                .orElseThrow( () -> new NoSheetFoundException("error.sheet.not.exist") );
-
-        RowDto lable = sheet.getLabel() != null ? modelMapper.map(sheet.getLabel(), RowDto.class) : new RowDto();
-
-        return lable;
-    }
 
     @Override
     public Map<String, List<RowDto>> findSheetData(RowDto rowDto) {
@@ -60,21 +51,6 @@ public class SheetSearchServiceImpl implements SheetSearchService{
                         .category(sheet.getCategory())
                         .build())
                 .collect(Collectors.groupingBy(RowDto::getCategory, LinkedHashMap::new, Collectors.toList()));
-    }
-
-    @Override
-    public List<Map<String, Object>> findRowDataKendo(RowDto rowDto) {
-        Sheet sheet = sheetJpaRepository.findBySheetName(rowDto.getSheetName())
-                .orElseThrow( () -> new NoSheetFoundException("error.sheet.not.exist") );
-
-        RowDto lable = sheet.getLabel() != null ? modelMapper.map(sheet.getLabel(), RowDto.class) : new RowDto();
-        List<SheetRow> rows = sheet.getRows();
-
-        List<Map<String, Object>> resultList = new ArrayList<>();
-
-        rows.forEach(row -> resultList.add(generateMap(lable,row)));
-
-        return resultList;
     }
 
     LinkedHashMap<String, Object> generateMap(RowDto label, SheetRow row){
