@@ -1,6 +1,5 @@
 package com.js.spreadsheet.sheet.domain;
 
-import com.js.spreadsheet.sheet.legacy.domain.SheetLabel;
 import com.js.spreadsheet.sheet.legacy.domain.SheetRow;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
@@ -30,9 +29,6 @@ public class Sheet {
 
     @OneToMany(mappedBy = "sheet", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     List<SheetRow> rows = new ArrayList<>();
-
-    @OneToOne(mappedBy = "sheet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    SheetLabel label;
 
 
     @Builder
