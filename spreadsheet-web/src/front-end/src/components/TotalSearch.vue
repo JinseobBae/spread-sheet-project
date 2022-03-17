@@ -59,7 +59,7 @@ export default {
 
   mounted() {
     const spreadsheet = this.$refs.spreadsheet_search.kendoWidget();
-    spreadsheet.element.css('height', '700px');
+    spreadsheet.element.css('height', '75vh');
     spreadsheet.element.css('width', '100%');
     spreadsheet.resize();
   },
@@ -83,7 +83,7 @@ export default {
     moveToSheetAndCell(resultData){
       this.isLoading = true;
       const spreadsheet = this.$refs.spreadsheet_search.kendoWidget();
-      spreadsheet.element.css('height', '700px');
+      spreadsheet.element.css('height', '75vh');
       spreadsheet.element.css('width', '100%');
 
       spreadsheet.resize();
@@ -159,7 +159,7 @@ export default {
   display: block;
   width: 30%;
   text-align: -webkit-center;
-  height: 700px;
+  height: 75vh;
   overflow-y: scroll;
   position: relative;
 }

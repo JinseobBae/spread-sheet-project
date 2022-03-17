@@ -42,7 +42,7 @@ export default {
   name: 'App',
   mounted: function () {
     const spreadsheet = this.$refs.spreadsheet.kendoWidget();
-    spreadsheet.element.css('height', '800px');
+    spreadsheet.element.css('height', '85vh');
     spreadsheet.element.css('width', '100%');
     spreadsheet.resize();
     this.fetchData();

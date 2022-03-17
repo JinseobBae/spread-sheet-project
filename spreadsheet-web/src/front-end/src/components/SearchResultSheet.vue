@@ -16,7 +16,7 @@ export default {
 
   mounted() {
     const spreadsheet = this.$refs.spreadsheet_search.kendoWidget();
-    spreadsheet.element.css('height', '700px');
+    spreadsheet.element.css('height', '50vh');
     spreadsheet.element.css('width', '100%');
     spreadsheet.resize();
 
